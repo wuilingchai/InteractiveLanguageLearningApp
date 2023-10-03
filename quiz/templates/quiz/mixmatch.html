@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<h1>Mix and Match quiz </h1>
+<a href="{% url 'quiz' %}">Back</a>
+
+<hr>
+<a href="{% url 'dialogchoice' %}"><button>Next</button></a> 
+<hr>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Check Match</button>
+</form>
+
+<h2>Words to Match</h2>
+<ul>
+    {% for word in words %}
+        <li>{{ word.original_word }} - ???</li>
+    {% endfor %}
+</ul>
+
+<h2>Feedback</h2>
+{% if feedback_message %}
+<div class="{% if feedback_message == 'Correct match! Well done!' %}success{% else %}error{% endif %}">
+    {{ feedback_message }}
+</div>
+{% endif %}
+
+
+{% endblock content %}
+

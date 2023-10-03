@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .profile-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+</style>
+    <h1>Profile Template</h1>
+
+    <div class="profile-container">
+        <!-- <form class="form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+
+            {% endfor %}
+        </form> -->
+        <div>
+            <h1>Hello {{user.username}}</h1>
+            <h3>Profile Picture</h3>
+            <h3>Full Name: {{user.username}}</h3>
+            <h3>Username : {{user.username}}</h3>
+            <h3>Password :</h3>
+            <h3>Re-confirm Password: </h3>
+            <h3>Email Address : {{user.email}}</h3>
+
+            <input type="submit" value="Save Changes"/>
+        </div>
+        
+        <div>
+            {% include 'base/sidemenu.html' %}
+        </div>
+
+    </div>
+{% endblock content %}
+

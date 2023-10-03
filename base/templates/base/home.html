@@ -1,0 +1,40 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<div class="home-container">
+  <div class="flex-container">
+    <div class="flex-item">
+      <img
+        src="{% static 'learningModule.png' %}"
+        class="logo-img"
+        alt="Learning Module"
+        style="width: 267.47px; height: 233.76px;"
+      />
+      <a href="{% url 'learningmodule' %}"><h3>Learning Module</h3></a>
+    </div>
+    <div class="flex-item">
+      <img
+        src="{% static 'translatorModule.png' %}"
+        class="logo-img"
+        alt="Translator"
+        style="width: 260px; height: 236px;"
+      />
+      <a href="{% url 'translator' %}"><h3>Translator</h3></a>
+    </div>
+    <div class="flex-item">
+      <img
+        src="{% static 'slangDictionaryModule.png' %}"
+        class="logo-img"
+        alt="Slang Dictionary"
+        style="width: 292px; height: 230.29px;"
+      />
+      <a href="{% url 'slangdictionary' %}"><h3>Slang Dictionary</h3></a>
+    </div>
+    <div class="flex-item">
+      <img src="{% static 'quizModule.png' %}" class="logo-img" alt="Quiz"  style="width: 260px; height: 236px;"/>
+      <a href="{% url 'quiz' %}"><h3>Quiz</h3></a>
+    </div>
+  </div>
+  <hr />
+</div>
+
+{% endblock content %}

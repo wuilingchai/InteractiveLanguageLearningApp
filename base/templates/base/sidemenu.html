@@ -1,0 +1,34 @@
+{% load static %}
+
+<div class="d-flex" id="wrapper">
+    <div class="bg-light border-right" id="sidebar">
+        <div class="sidebar-heading">SideMenu</div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="{% url 'home' %}" data-toggle="collapse" aria-expanded="true" class="btn-toggle">Home</a>
+                <ul class="collapse show" id="homeSubmenu">
+                    <li><a href="{% url 'learningmodule' %}" class="link-body-emphasis">Learning Module</a></li>
+                    <li><a href="{% url 'translator' %}" class="link-body-emphasis">Translator</a></li>
+                    <li><a href="{% url 'slangdictionary' %}" class="link-body-emphasis">Slang Dictionary</a></li>
+                    <li><a href="{% url 'quiz' %}" class="link-body-emphasis">Quiz</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'milestone' %}" class="btn-toggle">Milestone</a></li>
+            <li><a href="{% url 'profile' %}" class="btn-toggle">Profile</a></li>
+            <li><a href="{% url 'settingsapp' %}" class="btn-toggle">Settings</a></li>
+            <li><a href="#" class="btn-toggle">Language</a></li>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <!-- Your page content goes here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for toggling the sidebar
+    $(document).ready(function () {
+        $("#sidebar").toggleClass("active");
+    });
+</script>

@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Scenario Based Template</h1>
+    <a href="{% url 'learningmodule' %}">Back</a>
+    <hr>
+    
+    <div class="flex-container">
+        <div class="flex-item">
+            <img src="{% static 'pharmacy.png' %}" class="logo-img" alt="Pharmacy" />
+            <a href="{% url 'pharmacy' %}"><h3>Pharmacy</h3></a>
+        </div>
+        <div class="flex-item">
+            <img src="{% static 'restaurant.png' %}" class="logo-img" alt="Restaurant" />
+            <a href="{% url 'restaurant' %}"><h3>Restaurant</h3></a>
+        </div>
+        <div class="flex-item">
+            <img src="{% static 'airport.png' %}" class="logo-img" alt="Airport" />
+            <a href="{% url 'airport' %}"><h3>Airport</h3></a>
+        </div>
+        <div class="flex-item">
+            <img src="{% static 'cafe.png' %}" class="logo-img" alt="Cafe" />
+            <a href="{% url 'teatime' %}"><h3>Tea Time</h3></a>
+        </div>
+        <div class="flex-item">
+            <img src="{% static 'transportation.png' %}" class="logo-img" alt="Transportation" />
+            <a href="{% url 'transportation' %}"><h3>Transportation</h3></a>
+        </div>
+        <div class="flex-item">
+            <img src="{% static 'directions.png' %}" class="logo-img" alt="Directions" />
+            <a href="{% url 'directions' %}"><h3>Directions</h3></a>
+        </div>
+    </div>
+
+{% endblock content %}
+

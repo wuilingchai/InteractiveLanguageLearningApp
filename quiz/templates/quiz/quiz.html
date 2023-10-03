@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <h1>Quiz Template</h1>
+    <a href="{% url 'home' %}">Back</a>
+
+    <h3>Are you ready to put your knowledge to the test? 
+        Let's begin the quiz and see how well you've mastered the language!</h3>
+
+       <a href="{% url 'mixmatch' %}"><button>Start</button></a> 
+{% endblock content %}
+
