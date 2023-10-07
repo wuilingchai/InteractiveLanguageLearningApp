@@ -1,91 +1,83 @@
-{% extends 'main.html' %} 
-{% load static %} 
+{% extends 'main.html' %}
+{% load static %}
 {% block content %}
 
 <head>
   <style>
     @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 
-    .container{
-        position: relative;
-        margin: 12% auto;
-        width: 620px;
-        height: 450px;
+    .container {
+      position: relative;
+      margin: 1% auto;
+      width: 1000px;
+      height: 1000px;
     }
 
     .chatbox {
-        position: absolute; 
-        left: 35%;
-        height: 75%;
-        width: 60%;
-        border-radius: 10px;
-        box-shadow: 5px 5px 15px rgba(#777777, 0.5);
+      position: absolute;
+      left: 20%;
+      height: 80%;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(#777777, 0.5);
     }
 
     .top-bar {
-        width: 100%;
-        height: 60px;
-        background: #F9FBFF;
-        border-radius: 10px 10px 0 0;
+      width: 100%;
+      height: 1000px;
+      background: #325499;
+      border-radius: 10px 10px 0 0;
     }
 
     .name {
-        position: absolute;
-        top: 22px;
-        text-transform: uppercase;
-        color: #777777;
-        font-size: .8em;
-        letter-spacing: 2px;
-        font-weight: 500;
-        left: 60px;
+      position: absolute;
+      top: 11px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 2em;
+      letter-spacing: 2px;
+      font-weight: 500;
+      left: 60px;
     }
 
     .middle {
-        position: absolute;
-        background: #F9FBFF;
-        width: 100%;
-        opacity: 0.85;
-        top: 60px;
-        height: 80%;
+      position: absolute;
+      background: #F9FBFF;
+      width: 100%;
+      opacity: 0.85;
+      top: 60px;
+      height: 80%;
     }
 
-    .incoming {
-        position: absolute;
-        width: 50%;
-        height: 100%;
-        padding: 20px;
-        .bubble {
-            background: #83aa44;
-            /* float: right; */
-        }
+    .incoming,
+    .outgoing {
+      position: relative;
+      width: 100%;
+      padding: 20px;
     }
 
     .bubble {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 5px;
-        color: #496cb2;
-        font-size: 0.7em;
-        padding: 10px 10px 10px 12px;
-        border-radius: 20px;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #496cb2;
+      font-size: 0.7em;
+      padding: 10px 10px 10px 12px;
+      border-radius: 20px;
     }
+
     .lower {
-        margin-top: 45px; 
+      margin-top: 50px;
     }
 
-    .outgoing {
-        position: absolute;
-        padding: 20px;
-        right: 0;
-        top: 15%;
-        width: 50%;
-        height: 100%;
-        .bubble {
-            background: #79C7C5;
-            float: right;
-        }
+    .outgoing .bubble {
+      background: #79C7C5;
+      float: right;
     }
 
+    .incoming .bubble {
+      background: #83aa44;
+    }
   </style>
 </head>
 
@@ -93,7 +85,14 @@
 <a href="{% url 'scenariobased' %}">Back</a>
 <hr />
 
+<p>Pharmacies: {{ pharmacys }}</p>
 
+<ul>
+  {% for pharmacy in pharmacys %}
+  <li>{{ pharmacy.pharmacist }}</li>
+  {% endfor %}
+</ul>
+{% for pharmacy in pharmacys %}
 <div class="container">
   <div class="chatbox">
     <div class="top-bar">
@@ -102,16 +101,26 @@
     <div class="middle">
       <div class="pharmacy">
         <div class="incoming">
-          <div class="bubble">Hello How can i help u </div>
-          <div class="bubble">{{ pharmacy.location}}</div>
-
+          <div class="bubble">{{ pharmacy.pharmacist }}</div>
         </div>
         <div class="outgoing">
-          <div class="bubble lower">hello i would like to buy a plaster </div>
+          <div class="bubble">{{ pharmacy.customer }}</div>
         </div>
+        <div class="incoming">
+          <div class="bubble ">Goodbye</div>
+        </div>
+        <div class="outgoing">
+            <div class="bubble">Hello, I would like to buy a plaster</div>
+        </div>
+        
+            <div class="incoming">
+                <div class="bubble">{{ pharmacy.pharmacist }}</div>
+            </div>
+        
+
       </div>
     </div>
   </div>
 </div>
-
+{% endfor %}
 {% endblock content %}

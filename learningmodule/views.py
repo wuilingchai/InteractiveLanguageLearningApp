@@ -31,6 +31,8 @@ def pharmacy(request):
     pharmacys = Pharmacy.objects.all()
     context = {'pharmacys':pharmacys}
     print(dict(request.POST.items()))
+    print(pharmacys)
+
     return render(request, 'learningmodule/pharmacy.html', context)
 
 @login_required(login_url='login')
