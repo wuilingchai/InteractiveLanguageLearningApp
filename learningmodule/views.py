@@ -1,15 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Vocabulary
+from .models import Vocabulary, Pharmacy
 
 
-vocabulary = [ 
-    {'id':1, 'name':'Abuden', 'definition':'Means to reply sarcastically in “what else did you expect”.'},
-    {'id':2, 'name':'Aduh/Aiya', 'definition':'To convey annoyance, suffering, or pain experienced.'},
-    {'id':3, 'name':'Ang Moh', 'definition':'Describes Caucasians.'},
+# vocabulary = [ 
+#     {'id':1, 'name':'Abuden', 'definition':'Means to reply sarcastically in “what else did you expect”.'},
+#     {'id':2, 'name':'Aduh/Aiya', 'definition':'To convey annoyance, suffering, or pain experienced.'},
+#     {'id':3, 'name':'Ang Moh', 'definition':'Describes Caucasians.'},
 
-]
+# ]
 # Create your views here.
 @login_required(login_url='login')
 def learningmodule(request):
@@ -28,7 +28,10 @@ def scenariobased(request):
 
 @login_required(login_url='login')
 def pharmacy(request):
-    return render(request, 'learningmodule/pharmacy.html')
+    pharmacys = Pharmacy.objects.all()
+    context = {'pharmacys':pharmacys}
+    print(dict(request.POST.items()))
+    return render(request, 'learningmodule/pharmacy.html', context)
 
 @login_required(login_url='login')
 def restaurant(request):

@@ -1,33 +1,79 @@
+<!-- word_matching/templates/word_matching/exercise.html -->
+
 {% extends 'main.html' %}
 {% load static %}
+
 {% block content %}
-<h1>Mix and Match quiz </h1>
-<a href="{% url 'quiz' %}">Back</a>
+<h1>Matching Pairs Exercise</h1>
 
-<hr>
-<a href="{% url 'dialogchoice' %}"><button>Next</button></a> 
-<hr>
-
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Check Match</button>
-</form>
-
-<h2>Words to Match</h2>
-<ul>
+<div id="word-pairs">
     {% for word in words %}
-        <li>{{ word.original_word }} - ???</li>
+        <div class="word-pair">
+            <div class="source-word">{{ word.original_word }}</div>
+            <div class="target-word">{{ word.match_word }}</div>
+        </div>
     {% endfor %}
-</ul>
-
-<h2>Feedback</h2>
-{% if feedback_message %}
-<div class="{% if feedback_message == 'Correct match! Well done!' %}success{% else %}error{% endif %}">
-    {{ feedback_message }}
 </div>
-{% endif %}
 
+<button id="check-matches">Check Matches</button>
+<div id="feedback"></div>
 
-{% endblock content %}
+<script>
+    // JavaScript code to implement the matching behavior
+    // ...
 
+    // Add this JavaScript code in your exercise.html template
+
+$(document).ready(function() {
+    var selectedWords = [];
+    
+    // Click event handler for source words
+    $('.source-word').click(function() {
+        var sourceWord = $(this).text();
+        
+        if (!selectedWords.includes(sourceWord)) {
+            selectedWords.push(sourceWord);
+            $(this).addClass('selected');
+        } else {
+            selectedWords = selectedWords.filter(word => word !== sourceWord);
+            $(this).removeClass('selected');
+        }
+    });
+    
+    // Click event handler for target words
+    $('.target-word').click(function() {
+        var targetWord = $(this).text();
+        
+        if (selectedWords.length === 1) {
+            var sourceWord = selectedWords[0];
+            
+            if (targetWord === sourceWord) {
+                // Correct match
+                $(this).addClass('correct-match');
+                $('.selected').addClass('correct-match');
+            } else {
+                // Incorrect match
+                $(this).addClass('incorrect-match');
+                $('.selected').addClass('incorrect-match');
+            }
+            
+            selectedWords = [];
+            $('.selected').removeClass('selected');
+            
+            // Check if all matches are correct (you can implement scoring here)
+            var allMatchesCorrect = $('.correct-match').length === $('.word-pair').length;
+            if (allMatchesCorrect) {
+                $('#feedback').text('Congratulations! You completed the exercise.');
+            }
+        }
+    });
+    
+    // Click event handler for the "Check Matches" button
+    $('#check-matches').click(function() {
+        // Implement scoring logic here if needed
+    });
+});
+
+</script>
+
+{% endblock %}

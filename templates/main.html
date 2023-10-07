@@ -12,8 +12,8 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    
-    <div class="container-fluid">
+    <!-- {% include 'base/sidemenu.html' %} -->
+    <!-- <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 col-lg-3 d-md-block bg-light sidebar">
                 <button class="navbar-toggler d-md-none" type="button" data-toggle="collapse" data-target="#sidebarCollapse">
@@ -24,8 +24,9 @@
                         {% include 'base/sidemenu.html' %}
                     </div>
                 </div>
-            </nav>
+            </nav> -->
             <div class="col-md-10">
+                
                 <!-- Your content goes here -->
                 {% block content %} 
                 {% endblock content %}

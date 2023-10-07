@@ -7,4 +7,4 @@ class Word(models.Model):
     match_word = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.orignal_word} - {self.match_word}"
+        return f"{self.original_word} - {self.match_word}"
