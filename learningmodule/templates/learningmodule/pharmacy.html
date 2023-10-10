@@ -85,13 +85,13 @@
 <a href="{% url 'scenariobased' %}">Back</a>
 <hr />
 
-<p>Pharmacies: {{ pharmacys }}</p>
+<!-- <p>Pharmacies: {{ pharmacys }}</p> -->
 
-<ul>
+<!-- <ul>
   {% for pharmacy in pharmacys %}
   <li>{{ pharmacy.pharmacist }}</li>
   {% endfor %}
-</ul>
+</ul> -->
 {% for pharmacy in pharmacys %}
 <div class="container">
   <div class="chatbox">

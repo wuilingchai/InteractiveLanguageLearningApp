@@ -1,32 +1,60 @@
 {% load static %}
 
 <div class="d-flex" id="wrapper">
-    <div class="bg-light border-right" id="sidebar">
-        <div class="sidebar-heading">SideMenu</div>
-        <ul class="list-unstyled components">
-            <li>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="true" class="btn-toggle">Home</a>
-                <ul class="collapse show" id="homeSubmenu">
-                    <li><a href="{% url 'learningmodule' %}" class="link-body-emphasis">Learning Module</a></li>
-                    <li><a href="{% url 'translator' %}" class="link-body-emphasis">Translator</a></li>
-                    <li><a href="{% url 'slangdictionary' %}" class="link-body-emphasis">Slang Dictionary</a></li>
-                    <li><a href="{% url 'quiz' %}" class="link-body-emphasis">Quiz</a></li>
-                </ul>
-            </li>
-            <li><a href="{% url 'milestone' %}" class="btn-toggle">Milestone</a></li>
-            <li><a href="{% url 'profile' %}" class="btn-toggle">Profile</a></li>
-            <li><a href="{% url 'settingsapp' %}" class="btn-toggle">Settings</a></li>
-            <li><a href="#" class="btn-toggle">Language</a></li>
+  <div class="bg-light border-right" id="sidebar">
+    <div class="sidebar-heading">SideMenu</div>
+    <ul class="list-unstyled components">
+      <li>
+        <a href="{% url 'home' %}" class="btn-toggle">Home</a>
+        <ul class="collapse show" id="homeSubmenu">
+          <li>
+            <a href="{% url 'learningmodule' %}" class="link-body-emphasis"
+              >Learning Module</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'translator' %}" class="link-body-emphasis"
+              >Translator</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'slangdictionary' %}" class="link-body-emphasis"
+              >Slang Dictionary</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'quiz' %}" class="link-body-emphasis">Quiz</a>
+          </li>
         </ul>
-    </div>
-  
+      </li>
+      <li><a href="{% url 'milestone' %}" class="btn-toggle">Milestone</a></li>
+      <li><a href="{% url 'profile' %}" class="btn-toggle">Profile</a></li>
+      <li><a href="{% url 'settingsapp' %}" class="btn-toggle">Settings</a></li>
+    </ul>
+  </div>
+  <div id="overlay"></div>
+  <!-- Overlay for background -->
+  <!-- <button id="sidebarToggle">Toggle Sidebar</button> -->
+  <div class="burger-menu" id="sidebarToggle">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  <!-- Toggle button -->
 </div>
 
 <script>
-    // JavaScript for toggling the sidebar
-    $(document).ready(function () {
-        $(".btn-toggle").click(function () {
-            $("#sidebar").toggleClass("active");
-        });
-    });
+  // Adjust the JavaScript for the right sidebar
+document.getElementById('sidebarToggle').addEventListener('click', function () {
+  document.getElementById('sidebar').classList.toggle('active');
+  document.getElementById('overlay').style.display =
+    document.getElementById('sidebar').classList.contains('active') ? 'block' : 'none';
+});
+
+// Close sidebar when clicking outside the sidebar or overlay
+document.getElementById('overlay').addEventListener('click', function () {
+  document.getElementById('sidebar').classList.remove('active');
+  this.style.display = 'none';
+});
+
 </script>

@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import WordMatchForm
-from .models import Word
+from .models import Word, Choices
+
 
 
 # Create your views here.
@@ -17,4 +18,6 @@ def mixmatch(request):
 
 @login_required(login_url='login')
 def dialogchoice(request):
-    return render(request, 'quiz/dialogchoice.html')
+    choices = Choices.objects.all()
+    context = {'choices': choices}
+    return render(request, 'quiz/dialogchoice.html', context)

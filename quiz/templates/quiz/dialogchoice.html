@@ -1,12 +1,253 @@
-{% extends 'main.html' %}
-{% load static %}
-{% block content %}
-<h1>Multiple choice dialog quiz </h1>
-<a href="{% url 'quiz' %}">Back</a>
-<hr>
+{% extends 'main.html' %} {% load static %} {% block content %}
 
-<a href="{% url 'quiz' %}"><button>Done</button></a> 
+<head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
+    .container {
+      position: relative;
+      margin: 1% auto;
+      width: 1000px;
+      height: 1000px;
+    }
 
+    .chatbox {
+      position: absolute;
+      left: 20%;
+      height: 80%;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(#777777, 0.5);
+    }
+
+    .top-bar {
+      width: 100%;
+      height: 500px;
+      background: #325499;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .name {
+      position: absolute;
+      top: 11px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 2em;
+      letter-spacing: 2px;
+      font-weight: 500;
+      left: 60px;
+    }
+
+    .middle {
+      position: absolute;
+      background: #f9fbff;
+      width: 100%;
+      opacity: 0.85;
+      top: 60px;
+      height: 50%;
+    }
+
+    .incoming,
+    .outgoing {
+      position: relative;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .bubble {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #496cb2;
+      font-size: 0.7em;
+      padding: 10px 10px 10px 12px;
+      border-radius: 20px;
+    }
+
+    .lower {
+      margin-top: 50px;
+    }
+
+    .outgoing .bubble {
+      background: #79c7c5;
+      float: right;
+    }
+
+    .incoming .bubble {
+      background: #83aa44;
+    }
+    /* ---------------------------------- */
+
+    .mcq .mcq-answer {
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding-right: 120px;
+    }
+
+    .mcq .mcq-answer p {
+      z-index: 1000;
+    }
+
+    .mcq .circle {
+      position: relative;
+      height: 1em;
+      width: 1em;
+      margin-left: 1em;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      border: 0.3em solid #666677;
+      background-color: transparent;
+    }
+
+    .mcq .mcq-answer p {
+      display: block;
+      margin: 1em;
+      z-index: 10;
+    }
+
+    .mcq .feedback {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      background-color: #a94442;
+      color: white;
+      min-height: 100%;
+      max-width: 88.6%;
+      padding: 1em 1em 1em 2em;
+      z-index: 100;
+      opacity: 1;
+      visibility: hidden;
+    }
+
+    .mcq .correct .feedback {
+      background-color: #3c763d;
+    }
+
+    .mcq input {
+      display: none;
+    }
+
+    .mcq .highlight {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .mcq input:hover ~ .highlight {
+      background-color: #ccc;
+    }
+
+    .mcq input:checked ~ .highlight {
+      background-color: #f2dede;
+    }
+
+    .mcq .correct input:checked ~ .highlight {
+      background-color: #dff0d8;
+    }
+
+    .mcq input:checked ~ .circle {
+      background-color: #ebccd1;
+      border-color: #a94442;
+    }
+
+    .mcq .correct input:checked ~ .circle {
+      background-color: #d6e9c6;
+      border-color: #3c763d;
+    }
+
+    .mcq input:checked ~ .feedback {
+      visibility: visible;
+      -webkit-animation: feedbackfade 3s ease 3s;
+      animation: feedbackfade 3s ease 3s;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+    }
+  </style>
+</head>
+
+<h1>Multiple choice dialog quiz</h1>
+<a href="{% url 'mixmatch' %}">Back</a>
+<hr />
+
+<a href="{% url 'quiz' %}"><button>Done</button></a>
+
+<h1>Pharmacy Dialog</h1>
+<hr />
+
+<div class="container">
+  <div class="chatbox">
+    <div class="top-bar">
+      <div class="name">Pharmacy</div>
+    </div>
+    <div class="middle">
+      <div class="pharmacy">
+        <div class="incoming">
+          <div class="bubble">Hello, how may I help you?</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">
+            Hello, I would like to buy a strip of panadol for fever.
+          </div>
+        </div>
+        <div class="incoming">
+          <div class="bubble">Sure, here you go!</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">Reply: ____?_____</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- MCQ visible demo starts here -->
+        <div class="mcq">
+          <h4>Multiple Choice Question</h4>
+          <p>Question goes here..</p>
+
+          <label class="mcq-answer">
+            <input type="radio" name="question1" id="answer1" />
+            <div class="highlight"></div>
+            <div class="circle"></div>
+            <p>Incorrect answer 1</p>
+            <span class="feedback">Incorrect</span>
+          </label>
+          <label class="mcq-answer correct">
+            <input type="radio" name="question1" id="answer1" />
+            <div class="highlight"></div>
+            <div class="circle"></div>
+            <p>Correct answer</p>
+            <span class="feedback">Correct</span>
+          </label>
+          <label class="mcq-answer">
+            <input type="radio" name="question1" id="answer1" />
+            <div class="highlight"></div>
+            <div class="circle"></div>
+            <p>Incorrect answer 2</p>
+            <span class="feedback">Incorrect</span>
+          </label>
+          <label class="mcq-answer">
+            <input type="radio" name="question1" id="answer1" />
+            <div class="highlight"></div>
+            <div class="circle"></div>
+            <p>Incorrect answer 3</p>
+            <span class="feedback">Incorrect</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
-
