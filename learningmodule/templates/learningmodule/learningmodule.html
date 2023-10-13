@@ -16,9 +16,33 @@
             <img src="{% static 'scenarioBasedModule.png' %}" class="logo-img" alt="Scenario Based" />
             <a href="{% url 'scenariobased' %}"><h3>Scenario Based</h3></a>
         </div>
-
     </div>
-   
 
-    {% endblock content %}
+<style>
+    .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 
+    .flex-item {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+        max-width: 400px; /* Adjust the maximum width for larger items */
+    }
+
+    .logo-img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Media query for screens smaller than 768px */
+    @media (max-width: 768px) {
+        .flex-item {
+            flex: 0 0 100%;
+        }
+    }
+</style>
+{% endblock content %}

@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Vocabulary, Pharmacy
+from .form import VocabularySearchForm
+
 
 
 # vocabulary = [ 
@@ -17,8 +19,14 @@ def learningmodule(request):
 
 @login_required(login_url='login')
 def vocabulary(request):
+    form = VocabularySearchForm(request.GET)
+    query = request.GET.get('search')
     vocabularys = Vocabulary.objects.all()
-    context = {'vocabularys':vocabularys}
+    context = {'vocabularys':vocabularys, 'form':form}
+
+    if query:
+        vocabularys = vocabularys.filter(name__icontains=query)
+
     return render(request, 'learningmodule/vocabulary.html', context)
 
 @login_required(login_url='login')

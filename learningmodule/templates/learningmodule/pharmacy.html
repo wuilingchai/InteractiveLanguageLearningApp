@@ -1,32 +1,30 @@
-{% extends 'main.html' %}
-{% load static %}
-{% block content %}
-
+{% extends 'main.html' %} {% load static %} {% block content %}
 <head>
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+    @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
     .container {
       position: relative;
       margin: 1% auto;
-      width: 1000px;
-      height: 1000px;
+      width: 1200px; /* Increase the width for a bigger chat interface */
+      height: 1000px; /* Increase the height for a taller chat interface */
+      padding-top: 60px;
     }
 
     .chatbox {
       position: absolute;
-      left: 20%;
-      height: 80%;
+      left: 10%;
+      height: 80%; /* Increase the height for a taller chatbox */
       width: 80%;
       border-radius: 10px;
-      box-shadow: 5px 5px 15px rgba(#777777, 0.5);
+      /* box-shadow: 5px 5px 15px rgba(119, 119, 119, 0.5); */
     }
 
     .top-bar {
       width: 100%;
-      height: 1000px;
+      height: 100%;
       background: #325499;
-      border-radius: 10px 10px 0 0;
+      border-radius: 10px 10px 10px 10px;
     }
 
     .name {
@@ -42,11 +40,11 @@
 
     .middle {
       position: absolute;
-      background: #F9FBFF;
+      background: #f9fbff;
       width: 100%;
       opacity: 0.85;
       top: 60px;
-      height: 80%;
+      height: 80%; /* Increase the height for a taller chat content */
     }
 
     .incoming,
@@ -60,9 +58,9 @@
       position: relative;
       display: inline-block;
       margin-bottom: 10px;
-      color: #496cb2;
-      font-size: 0.7em;
-      padding: 10px 10px 10px 12px;
+      color: #000000;
+      font-size: 0.9em; /* Increase the font size for better readability */
+      padding: 15px; /* Increase the padding for larger bubbles */
       border-radius: 20px;
     }
 
@@ -71,12 +69,19 @@
     }
 
     .outgoing .bubble {
-      background: #79C7C5;
+      background: #abd3d2;
       float: right;
     }
 
     .incoming .bubble {
-      background: #83aa44;
+      background: #ccebee;
+    }
+
+    button {
+      position: absolute;
+      right: 20px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
     }
   </style>
 </head>
@@ -85,13 +90,8 @@
 <a href="{% url 'scenariobased' %}">Back</a>
 <hr />
 
-<!-- <p>Pharmacies: {{ pharmacys }}</p> -->
+<button>Done</button>
 
-<!-- <ul>
-  {% for pharmacy in pharmacys %}
-  <li>{{ pharmacy.pharmacist }}</li>
-  {% endfor %}
-</ul> -->
 {% for pharmacy in pharmacys %}
 <div class="container">
   <div class="chatbox">
@@ -107,20 +107,22 @@
           <div class="bubble">{{ pharmacy.customer }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble ">Goodbye</div>
+          <div class="bubble">Goodbye</div>
         </div>
         <div class="outgoing">
-            <div class="bubble">Hello, I would like to buy a plaster</div>
+          <div class="bubble">Hello, I would like to buy a plaster</div>
         </div>
-        
-            <div class="incoming">
-                <div class="bubble">{{ pharmacy.pharmacist }}</div>
-            </div>
-        
-
+        <div class="incoming">
+          <div class="bubble">{{ pharmacy.pharmacist }}</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">Hello, I would like to buy a plaster</div>
+        </div>
+        <div class="incoming">
+          <div class="bubble">{{ pharmacy.pharmacist }}</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-{% endfor %}
-{% endblock content %}
+{% endfor %} {% endblock content %}

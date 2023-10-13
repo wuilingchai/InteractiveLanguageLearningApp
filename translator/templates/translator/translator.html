@@ -1,4 +1,93 @@
 {% extends 'main.html' %} {% block content %}
+
+<style>
+  /* Styling for the container */
+  .container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* Styling for the h1 heading */
+  h1 {
+    font-size: 36px;
+  }
+
+  /* Styling for the form */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Styling for the select elements */
+  select {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  /* Styling for the textarea */
+  textarea {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  /* Styling for the Translate button */
+  #btn {
+    background-color: #4285f4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Styling for the smaller div */
+  .smaller-div {
+    width: 80%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the div horizontally */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* Styling for the Translated and Translation History sections */
+  .translation-section {
+    margin-top: 20px;
+  }
+
+  h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  /* Styling for the "No translation history" message */
+  .no-history {
+    font-style: italic;
+  }
+</style>
+
 <h1>Translator Template</h1>
 <a href="{% url 'home' %}">Back</a>
 <hr>
