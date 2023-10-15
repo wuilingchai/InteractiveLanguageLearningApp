@@ -1,10 +1,10 @@
 {% extends 'main.html' %} {% block content %}
-
 <style>
   /* Styling for the container */
   .container {
     text-align: center;
     padding: 20px;
+    
   }
 
   /* Styling for the h1 heading */
@@ -39,7 +39,7 @@
 
   /* Styling for the Translate button */
   #btn {
-    background-color: #4285f4;
+    background-color: rgba(49, 169, 221, 0.86);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -47,13 +47,14 @@
     cursor: pointer;
   }
 
-  /* Styling for the smaller div */
-  .smaller-div {
-    width: 80%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the div horizontally */
+  /* Styling for the smaller translation container */
+  .smaller-translation {
+    width: 60%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the container horizontally */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px; /* Reduce font size */
   }
 
   /* Styling for the Translated and Translation History sections */
@@ -87,79 +88,69 @@
     font-style: italic;
   }
 </style>
-
-<h1>Translator Template</h1>
 <a href="{% url 'home' %}">Back</a>
-<hr>
-<div>
-  <form method="post">
-    {% csrf_token %}
-    <p>Choose Language</p>
+<div class="container">
+  <h1>Translator</h1>
+  
+  <hr />
+  <div class="form-container">
+    <form method="post">
+      {% csrf_token %}
+      <p>Choose Language</p>
+      <select required name="fromlanguage">
+        <!-- Options here -->
+        <option value="en">English</option>
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
 
-    <br />
-    <select required name="fromlanguage">
-      <option value="en">English</option>
-      <option value="fr">French</option>
-      <option value="es">Spanish</option>
-      <option value="de">German</option>
-      <option value="it">Italian</option>
-
-      <option value="zh">Chinese</option>
-      <option value="ig">Igbo</option>
-      <option value="yo">Yoruba</option>
-    </select>
-    <br />
-
-    <label for="django">Enter Text:</label>
-    <br />
-    <textarea
-      onChange=""
-      id="translate"
-      name="translate"
-      placeholder="Enter your text here"
-      rows="10"
-      cols="70"
-    ></textarea>
-
-    <br /><br />
-    <select required name="tolanguage">
-      <option value="fr">French</option>
-      <option value="es">Spanish</option>
-      <option value="de">German</option>
-      <option value="it">Italian</option>
-      <option value="en">English</option>
-      <option value="zh-CN">Chinese</option>
-      <option value="th">Thai</option>
-      <option value="ms">Malay</option>
-    </select>
-    <br />
-    <br />
-    <button id="btn" type="submit">Translate</button>
-  </form>
-
-  <br />
-
-  <div>
-    <h4>Translated:</h4>
-    <p>{{translation}}</p>
+        <option value="zh">Chinese</option>
+        <option value="ig">Igbo</option>
+        <option value="yo">Yoruba</option>
+      </select>
+      <label for="translate">Enter Text:</label>
+      <textarea
+        id="translate"
+        name="translate"
+        placeholder="Enter your text here"
+        rows="10"
+        cols="70"
+      ></textarea>
+      <select required name="tolanguage">
+        <!-- Options here -->
+        <option value="fr">French</option>
+        <option value="es">Spanish</option>
+        <option value="de">German</option>
+        <option value="it">Italian</option>
+        <option value="en">English</option>
+        <option value="zh-CN">Chinese</option>
+        <option value="th">Thai</option>
+        <option value="ms">Malay</option>
+      </select>
+      <button id="btn" type="submit">Translate</button>
+    </form>
   </div>
+<br>
+  <div class="smaller-translation">
+    <div class="translation-section">
+      <h4>Translated:</h4>
+      <p>{{translation}}</p>
+    </div>
 
-  <div>
-    <h4>Translation History:</h4>
-    <ul>
-      {% for history_record in translation_history %}
+    <div class="translation-section">
+      <h4>Translation History:</h4>
+      <ul>
+        {% for history_record in translation_history %}
         <li>
           <p>Source Text: {{history_record.source_text }}</p>
           <p>Translated Text: {{history_record.trans_text }}</p>
-
         </li>
-      {% empty %}
-        <p>No translation history</p>
-      {% endfor %}
-    </ul>
+        {% empty %}
+        <p class="no-history">No translation history</p>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-
-
 </div>
-
 {% endblock content %}

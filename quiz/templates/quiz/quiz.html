@@ -1,14 +1,69 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<style>
+    /* Center the content */
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh; /* Adjust this as needed for the desired vertical centering */
+        text-align: center;
+    }
 
-    <h1>Quiz Template</h1>
-    <a href="{% url 'home' %}">Back</a>
+    .content-box {
+        background-color: rgba(136, 190, 212, 0.49);
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-    <h3>Are you ready to put your knowledge to the test? 
-        Let's begin the quiz and see how well you've mastered the language!</h3>
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-family: 'Times New Roman', Times, serif;
 
-       <a href="{% url 'mixmatch' %}"><button>Start</button></a> 
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007BFF;
+    }
+
+    button {
+        background-color: rgba(49, 169, 221, 0.86);
+        color: #000000;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+        <a href="{% url 'home' %}">Back</a>
+
+<div class="content-container">
+    <div class="content-box">
+        <h1>Quiz</h1>
+
+        <h3>Are you ready to put your knowledge to the test?<br>Let's begin the quiz and see how well you've mastered the language!</h3>
+
+        <a href="{% url 'mixmatch' %}">
+            <button>Start</button>
+        </a>
+    </div>
+</div>
 {% endblock content %}
-
-[]

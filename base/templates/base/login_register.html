@@ -1,8 +1,68 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<style>
+    /* CSS for centering the form */
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* This makes the container fill the viewport height */
+    }
+
+    /* Style for the form */
+    .form-container form {
+        background-color: rgba(136, 190, 212, 0.49);
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Style for labels */
+    .form-container label {
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    /* Style for text input fields */
+    .form-container input[type="text"],
+    .form-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style for submit button */
+    .form-container input[type="submit"] {
+        background-color: rgba(49, 169, 221, 0.86);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-container input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    /* Style for links */
+    .form-container a {
+        text-decoration: none;
+        color: rgba(49, 169, 221, 0.86);
+    }
+</style>
+
 {% if page == 'login' %}
-<div>
+<div class="form-container">
     <form method="POST" action="">
         {% csrf_token %}
 
@@ -12,16 +72,18 @@
         <label>Password:</label>
         <input type="password" name="password" placeholder="Enter Password"/>
 
+       
+
         <input type="submit" value="Login"/>
     </form>
-
-    <p>Havent signup yet?</p>
+<br>
+    <p>Haven't signed up yet?</p>
     <a href="{% url 'register' %}">Sign Up</a>
 </div>
 
 {% else %}
 
-<div>
+<div class="form-container">
     <form method="POST" action="">
         {% csrf_token %}
         {{form.as_p}}
