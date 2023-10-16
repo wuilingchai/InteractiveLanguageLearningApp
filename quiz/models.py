@@ -13,10 +13,11 @@ class Word(models.Model):
 class Choices(models.Model):
     question = models.TextField(max_length=200)
     answer = models.CharField(max_length=50)
-    choice1 = models.CharField(max_length=50)
-    choice1 = models.CharField(max_length=50)
-    choice1 = models.CharField(max_length=50)
-    choice1 = models.CharField(max_length=50)
+    choice1 = models.CharField(max_length=50, null=True, blank=True)
+    choice2 = models.CharField(max_length=50, null=True, blank=True)
+    choice3 = models.CharField(max_length=50, null=True, blank=True)
+    choice4 = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.question
+

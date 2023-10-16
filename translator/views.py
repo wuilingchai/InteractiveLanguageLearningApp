@@ -17,14 +17,15 @@ def translator(request):
         translation = translator.translate(text, src=from_lang, dest=to_lang)
 
         translation_history = TranslationHistory(
-            source_text = text,
-            source_language = from_lang,
-            trans_text = translation.text,
-            trans_language = to_lang,
+            user=request.user,
+            source_text=text,
+            source_language=from_lang,
+            trans_text=translation.text,
+            trans_language=to_lang,
         )
         translation_history.save()
 
-        translation_history = TranslationHistory.objects.all()
+        translation_history = TranslationHistory.objects.filter(user=request.user)
  
         context = {
             'translation': translation.text,
@@ -33,4 +34,5 @@ def translator(request):
 
         return render(request, 'translator/translator.html', context)
     return render(request, 'translator/translator.html')
+
 

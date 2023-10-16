@@ -153,4 +153,70 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Get the protocol (e.g., "http:" or "https:")
+  let protocol = window.location.protocol;
+
+  // Get the host (e.g., "example.com" or "sub.example.com:8080")
+  let host = window.location.host;
+
+  // Combine them to form the base URL
+  let baseURL = `${protocol}//${host}`;
+
+  console.log("Base URL:", baseURL);
+
+  document.getElementById('btn').addEventListener('click', function(e) {
+      e.preventDefault();
+  
+      let text = document.querySelector('textarea[name="translate"]').value;
+      let to_lang = document.querySelector('select[name="tolanguage"]').value;
+      let from_lang = document.querySelector('select[name="fromlanguage"]').value;
+  
+      fetch(`${protocol}//${host}/translator/api/translate/`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': '{{ csrf_token }}'
+          },
+          body: JSON.stringify({
+              translate: text,
+              tolanguage: to_lang,
+              fromlanguage: from_lang
+          })
+      })
+      .then(response => response.json())
+      .then(data => {
+          document.querySelector('.translation-section p').textContent = data.translation;
+          // Optionally, fetch the updated translation history
+          fetchTranslationHistory();
+      });
+  });
+  
+  function fetchTranslationHistory() {
+      fetch(`${protocol}//${host}/translator/api/translation-history/`)
+          .then(response => response.json())
+          .then(data => {
+              let historyList = document.querySelector('.translation-section ul');
+              historyList.innerHTML = ''; // Clear the list
+  
+              data.forEach(record => {
+                  let li = document.createElement('li');
+                  let sourceTextP = document.createElement('p');
+                  let translatedTextP = document.createElement('p');
+                  
+                  sourceTextP.textContent = "Source Text: " + record.source_text;
+                  translatedTextP.textContent = "Translated Text: " + record.trans_text;
+  
+                  li.appendChild(sourceTextP);
+                  li.appendChild(translatedTextP);
+                  historyList.appendChild(li);
+              });
+          });
+  }
+  
+  // Fetch translation history on page load
+  fetchTranslationHistory();
+  </script>
+  
 {% endblock content %}

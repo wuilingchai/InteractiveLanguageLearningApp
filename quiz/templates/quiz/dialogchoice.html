@@ -213,7 +213,7 @@
     <div class="row">
       <div class="col-xs-12">
         <!-- MCQ visible demo starts here -->
-        <div class="mcq">
+        <!-- <div class="mcq">
           <h4>Multiple Choice Question</h4>
           <p>Question goes here..</p>
 
@@ -245,9 +245,119 @@
             <p>Incorrect answer 3</p>
             <span class="feedback">Incorrect</span>
           </label>
+        </div> -->
+        <div id="mcq-section">
+
+
         </div>
+
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Get the protocol (e.g., "http:" or "https:")
+  let protocol = window.location.protocol;
+
+  // Get the host (e.g., "example.com" or "sub.example.com:8080")
+  let host = window.location.host;
+
+  // Combine them to form the base URL
+  let baseURL = `${protocol}//${host}`;
+
+  console.log("Base URL:", baseURL);
+
+  fetch(`${protocol}//${host}/quiz/api/choices/`)
+      .then(response => response.json())
+      .then(data => {
+          const mcqSection = document.getElementById('mcq-section');
+          
+          data.forEach(question => {
+              let questionDiv = document.createElement('div');
+              questionDiv.classList.add('mcq');
+
+              let questionTitle = document.createElement('h4');
+              questionTitle.textContent = "Multiple Choice Question";
+              questionDiv.appendChild(questionTitle);
+
+              let questionText = document.createElement('p');
+              questionText.textContent = question.question;
+              questionDiv.appendChild(questionText);
+
+              const choices = [
+                  question.choice1,
+                  question.choice2,
+                  question.choice3,
+                  question.choice4,
+              ];
+              choices.forEach((choice, index) => {
+                  let choiceLabel = document.createElement('label');
+                  choiceLabel.classList.add('mcq-answer');
+                  if (choice === question.answer) {
+                      choiceLabel.classList.add('correct');
+                  }
+
+                  let choiceInput = document.createElement('input');
+                  choiceInput.setAttribute('type', 'radio');
+                  choiceInput.setAttribute('name', `question${question.id}`);
+                  choiceInput.setAttribute('id', `answer${index}`);
+                  choiceLabel.appendChild(choiceInput);
+
+                  let highlightDiv = document.createElement('div');
+                  highlightDiv.classList.add('highlight');
+                  choiceLabel.appendChild(highlightDiv);
+
+                  let circleDiv = document.createElement('div');
+                  circleDiv.classList.add('circle');
+                  choiceLabel.appendChild(circleDiv);
+
+                  let choiceText = document.createElement('p');
+                  choiceText.textContent = choice;
+                  choiceLabel.appendChild(choiceText);
+
+                  let feedbackSpan = document.createElement('span');
+                  feedbackSpan.classList.add('feedback');
+                  feedbackSpan.textContent = choice === question.answer ? "Correct" : "Incorrect";
+                  choiceLabel.appendChild(feedbackSpan);
+
+                  questionDiv.appendChild(choiceLabel);
+              });
+
+              mcqSection.appendChild(questionDiv);
+          });
+      });
+
+
+      document.getElementById('mcq-section').addEventListener('change', (event) => {
+        if (event.target.tagName === 'INPUT' && event.target.type === 'radio') {
+            const questionId = parseInt(event.target.name.replace('question', ''));
+            const selectedAnswer = event.target.nextSibling.nextSibling.nextSibling.textContent.trim();
+
+            fetch(`${protocol}//${host}/quiz/api/validate-answer/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // for CSRF protection
+                },
+                body: JSON.stringify({
+                    id: questionId,
+                    answer: selectedAnswer
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'Correct') {
+                    // Handle correct answer
+                    alert('Correct!');
+                } else {
+                    // Handle incorrect answer
+                    alert('Incorrect. Try again.');
+                }
+            });
+        }
+    });
+</script>
+
+
 {% endblock content %}
