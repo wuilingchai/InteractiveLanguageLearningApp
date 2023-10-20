@@ -3,18 +3,18 @@
 
 {% block content %}
     <h1>Learning Module Template</h1>
-    <a href="{% url 'home' %}">Back</a>
+    <a href="{% url 'home' %} " style="text-decoration: none; color: black; right: 5px;">Back</a>
 
     <hr> 
 
     <div class="flex-container">
         <div class="flex-item">
             <img src="{% static 'vocabularyModule.png' %}" class="logo-img" alt="Vocabulary" />
-            <a href="{% url 'vocabulary' %}"><h3>Vocabulary</h3></a>
+            <a href="{% url 'vocabulary' %}" style="text-decoration: none; color: black;"><h3>Vocabulary</h3></a>
         </div>
         <div class="flex-item">
             <img src="{% static 'scenarioBasedModule.png' %}" class="logo-img" alt="Scenario Based" />
-            <a href="{% url 'scenariobased' %}"><h3>Scenario Based</h3></a>
+            <a href="{% url 'scenariobased' %}" style="text-decoration: none; color: black;"><h3>Scenario Based</h3></a>
         </div>
     </div>
 
@@ -24,6 +24,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        height: 70vh;
     }
 
     .flex-item {

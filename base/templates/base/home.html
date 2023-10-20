@@ -5,19 +5,19 @@
   <div class="flex-container">
     <div class="flex-item">
       <img src="{% static 'learningModule.png' %}" class="logo-img" alt="Learning Module">
-      <a href="{% url 'learningmodule' %}"><h3>Learning Module</h3></a>
+      <a href="{% url 'learningmodule' %}" style="text-decoration: none; color: black;"><h3>Learning Module</h3></a>
     </div>
     <div class="flex-item">
       <img src="{% static 'translatorModule.png' %}" class="logo-img" alt="Translator">
-      <a href="{% url 'translator' %}"><h3>Translator</h3></a>
+      <a href="{% url 'translator' %}" style="text-decoration: none; color: black;"><h3>Translator</h3></a>
     </div>
     <div class="flex-item">
       <img src="{% static 'slangDictionaryModule.png' %}" class="logo-img" alt="Slang Dictionary">
-      <a href="{% url 'slangdictionary' %}"><h3>Slang Dictionary</h3></a>
+      <a href="{% url 'slangdictionary' %}" style="text-decoration: none; color: black;"><h3>Slang Dictionary</h3></a>
     </div>
     <div class="flex-item">
       <img src="{% static 'quizModule.png' %}" class="logo-img" alt="Quiz">
-      <a href="{% url 'quiz' %}"><h3>Quiz</h3></a>
+      <a href="{% url 'quiz' %}" style="text-decoration: none; color: black;"><h3>Quiz</h3></a>
     </div>
   </div>
 </div>
@@ -28,6 +28,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    height: 70vh;
   }
 
   .flex-item {

@@ -1,7 +1,7 @@
 
---------Main Template--------------
-.logo-img{
-  max-width: 50%;
+/* --------Main Template-------------- */
+/* .logo-img{
+  max-width: 1000%;
   max-height: 50%
 }
 
@@ -15,46 +15,15 @@
   width: auto;
 }
 
-.logo-name {
+.logo-name > h1{
     padding-top: 40px;
     padding-left: 10px;
-}
-
-
-------Home Page------------
-/* Add these styles to your main.css or another relevant CSS file */
-
-
-/* .flex-container {
-  margin-left: 50%;
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  
-}
-
-.flex-item {
-  text-align: center;
-  margin: 20px; 
-  display: inline-block;
-  padding: 10px;
-}
-
-.logo-img {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-a {
-  text-decoration: none; 
-  color: #333; 
-}
-
-
-a:hover {
-  color: #555; 
+    text-decoration: none;
+    color: black;
 } */
 
+
+/* ------Home Page------------ */
 
 
 /* ------flashcard----- */

@@ -87,6 +87,53 @@
   .no-history {
     font-style: italic;
   }
+
+  /* Add these CSS rules for the side-by-side language selectors */
+.language-selectors {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.language-selector {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Add these CSS rules for side-by-side sections */
+.side-by-side {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+}
+
+.right-section{
+  border: black;
+}
+
+.left-section {
+  margin-right: 10px;
+}
+
+.right-section ul {
+  padding: 0;
+}
+
+.right-section li {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+
+}
+
+
+/* Rest of your existing CSS... */
+
 </style>
 <a href="{% url 'home' %}">Back</a>
 <div class="container">
@@ -96,47 +143,71 @@
   <div class="form-container">
     <form method="post">
       {% csrf_token %}
-      <p>Choose Language</p>
-      <select required name="fromlanguage">
-        <!-- Options here -->
-        <option value="en">English</option>
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="de">German</option>
-        <option value="it">Italian</option>
+      <div class="language-selectors">
+        <div class="language-selector">
+          <label for="fromlanguage">From Language:</label>
+          <select required name="fromlanguage">
+            <!-- Options here -->
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+    
+        <div class="language-selector">
+          <label for="tolanguage">To Language:</label>
+          <select required name="tolanguage">
+            <!-- Options here -->
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+      </div>
+    
+      <div class="smaller-translation">
+        <div class="translation-section">
+          <div class="side-by-side">
+            <div class="left-section">
+              <label for="translate">Enter Text:</label>
+              <textarea
+                id="translate"
+                name="translate"
+                placeholder="Enter your text here"
+                rows="10"
+                cols="70"
+              ></textarea>
+            </div>
+      
+            <div class="right-section">
+              <h4>Translated:</h4>
+              <p>{{ translation }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
 
-        <option value="zh">Chinese</option>
-        <option value="ig">Igbo</option>
-        <option value="yo">Yoruba</option>
-      </select>
-      <label for="translate">Enter Text:</label>
+      <!-- <label for="translate">Enter Text:</label>
       <textarea
         id="translate"
         name="translate"
         placeholder="Enter your text here"
         rows="10"
         cols="70"
-      ></textarea>
-      <select required name="tolanguage">
-        <!-- Options here -->
-        <option value="fr">French</option>
-        <option value="es">Spanish</option>
-        <option value="de">German</option>
-        <option value="it">Italian</option>
-        <option value="en">English</option>
-        <option value="zh-CN">Chinese</option>
-        <option value="th">Thai</option>
-        <option value="ms">Malay</option>
-      </select>
+      ></textarea> -->
+      <br>
       <button id="btn" type="submit">Translate</button>
     </form>
+    
   </div>
 <br>
   <div class="smaller-translation">
-    <div class="translation-section">
+    <!-- <div class="translation-section">
       <h4>Translated:</h4>
       <p>{{translation}}</p>
-    </div>
+    </div> -->
 
     <div class="translation-section">
       <h4>Translation History:</h4>
