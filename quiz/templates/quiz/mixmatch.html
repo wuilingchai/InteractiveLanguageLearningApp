@@ -2,7 +2,9 @@
 
 {% extends 'main.html' %} {% load static %} {% block content %}
 <h1>Matching Pairs Exercise</h1>
-<a href="{% url 'dialogchoice' %}">Next</a>
+<a href="{% url 'dialogchoice' %}">
+  <button class="next-btn">Next</button>
+</a>
 <hr />
 
 <!-- <div id="word-pairs">
@@ -14,6 +16,12 @@
     {% endfor %}
 </div> -->
 <style>
+.next-btn {
+      /* position: absolute; */
+      left: 50px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
+    }
 
 section {
   display: inline-flex;
@@ -137,7 +145,7 @@ span:hover {
   transform: none;
 }
 
-button {
+.reset-btn {
   position: absolute;
   padding: 0;
   margin: 0;
@@ -199,7 +207,7 @@ button:focus {
 <section>
   <ul id="terms"></ul>
   <ul id="defs"></ul>
-  <button name="reset">RESET</button>
+  <button name="reset" class="reset-btn">RESET</button>
 </section>
 
 

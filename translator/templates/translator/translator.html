@@ -1,5 +1,13 @@
 {% extends 'main.html' %} {% block content %}
 <style>
+
+.back-btn {
+      /* position: absolute; */
+      left: 50px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
+    }
+
   /* Styling for the container */
   .container {
     text-align: center;
@@ -135,7 +143,9 @@
 /* Rest of your existing CSS... */
 
 </style>
-<a href="{% url 'home' %}">Back</a>
+<a href="{% url 'home' %}">
+  <button class="back-btn">Back</button>
+</a>
 <div class="container">
   <h1>Translator</h1>
   

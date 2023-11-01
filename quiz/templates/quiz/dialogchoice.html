@@ -3,6 +3,20 @@
 <head>
   <style>
     @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+    
+    .done-btn {
+      position: absolute;
+      right: 10px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
+    }
+
+    .back-btn {
+      /* position: absolute; */
+      left: 50px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
+    }
 
     .container {
       position: relative;
@@ -178,10 +192,11 @@
 </head>
 
 <h1>Multiple choice dialog quiz</h1>
-<a href="{% url 'mixmatch' %}">Back</a>
+<a href="{% url 'mixmatch' %}">
+  <button class="back-btn">Back</button></a>
 <hr />
 
-<a href="{% url 'quiz' %}"><button>Done</button></a>
+<a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
 
 <h1>Pharmacy Dialog</h1>
 <hr />

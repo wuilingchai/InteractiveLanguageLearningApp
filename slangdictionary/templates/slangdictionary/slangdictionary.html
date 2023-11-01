@@ -2,7 +2,10 @@
 
 {% block content %}
 <div>
-  <a href="{% url 'home' %}">Back</a>
+  <a href="{% url 'home' %}">
+    <button class="back-btn">Back</button>
+
+  </a>
   <hr>
 
   <head>
@@ -13,6 +16,14 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <style>
+
+.back-btn {
+      /* position: absolute; */
+      left: 50px; /* Adjust the right position as needed */
+      border-radius: 10px;
+      background-color: rgba(49, 169, 221, 0.86);
+    }
+
       .flashcard-container {
         display: flex;
         flex-wrap: wrap;

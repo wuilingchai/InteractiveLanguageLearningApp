@@ -1,75 +1,111 @@
-{% extends 'main.html' %}
-{% load static %}
+{% extends 'main.html' %} {% load static %} {% block content %}
+<h1>Scenario Based Template</h1>
+<a href="{% url 'learningmodule' %}">
+    <button class="back-btn">Back</button>
+</a>
+<hr />
 
-{% block content %}
-    <h1>Scenario Based Template</h1>
-    <a href="{% url 'learningmodule' %}">Back</a>
-    <hr>
-    
-    <div class="flex-container">
-        <div class="flex-row">
-            <div class="flex-item">
-                <img src="{% static 'pharmacy.png' %}" class="logo-img" alt="Pharmacy" />
-                <a href="{% url 'pharmacy' %}" style="text-decoration: none; color: black;"><h3>Pharmacy</h3></a>
-            </div>
-            <div class="flex-item">
-                <img src="{% static 'restaurant.png' %}" class="logo-img" alt="Restaurant" />
-                <a href="{% url 'restaurant' %}" style="text-decoration: none; color: black;"><h3>Restaurant</h3></a>
-            </div>
-            <div class="flex-item">
-                <img src="{% static 'airport.png' %}" class="logo-img" alt="Airport" />
-                <a href="{% url 'airport' %}" style="text-decoration: none; color: black;"><h3>Airport</h3></a>
-            </div>
-        </div>
-        <div class="flex-row">
-            <div class="flex-item">
-                <img src="{% static 'cafe.png' %}" class="logo-img" alt="Cafe" />
-                <a href="{% url 'teatime' %}" style="text-decoration: none; color: black;"><h3>Tea Time</h3></a>
-            </div>
-            <div class="flex-item">
-                <img src="{% static 'transportation.png' %}" class="logo-img" alt="Transportation" />
-                <a href="{% url 'transportation' %}" style="text-decoration: none; color: black;"><h3>Transportation</h3></a>
-            </div>
-            <div class="flex-item">
-                <img src="{% static 'directions.png' %}" class="logo-img" alt="Directions" />
-                <a href="{% url 'directions' %}" style="text-decoration: none; color: black;"><h3>Directions</h3></a>
-            </div>
-        </div>
+<div class="flex-container">
+  <div class="flex-row">
+    <div class="flex-item">
+      <img src="{% static 'pharmacy.png' %}" class="logo-img" alt="Pharmacy" />
+      <a href="{% url 'pharmacy' %}" style="text-decoration: none; color: black"
+        ><h3>Pharmacy</h3></a
+      >
     </div>
+    <div class="flex-item">
+      <img
+        src="{% static 'restaurant.png' %}"
+        class="logo-img"
+        alt="Restaurant"
+      />
+      <a
+        href="{% url 'restaurant' %}"
+        style="text-decoration: none; color: black"
+        ><h3>Restaurant</h3></a
+      >
+    </div>
+    <div class="flex-item">
+      <img src="{% static 'airport.png' %}" class="logo-img" alt="Airport" />
+      <a href="{% url 'airport' %}" style="text-decoration: none; color: black"
+        ><h3>Airport</h3></a
+      >
+    </div>
+  </div>
+  <div class="flex-row">
+    <div class="flex-item">
+      <img src="{% static 'cafe.png' %}" class="logo-img" alt="Cafe" />
+      <a href="{% url 'teatime' %}" style="text-decoration: none; color: black"
+        ><h3>Tea Time</h3></a
+      >
+    </div>
+    <div class="flex-item">
+      <img
+        src="{% static 'transportation.png' %}"
+        class="logo-img"
+        alt="Transportation"
+      />
+      <a
+        href="{% url 'transportation' %}"
+        style="text-decoration: none; color: black"
+        ><h3>Transportation</h3></a
+      >
+    </div>
+    <div class="flex-item">
+      <img
+        src="{% static 'directions.png' %}"
+        class="logo-img"
+        alt="Directions"
+      />
+      <a
+        href="{% url 'directions' %}"
+        style="text-decoration: none; color: black"
+        ><h3>Directions</h3></a
+      >
+    </div>
+  </div>
+</div>
 
 <style>
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
+  .back-btn {
+    /* position: absolute; */
+    left: 50px; /* Adjust the right position as needed */
+    border-radius: 10px;
+    background-color: rgba(49, 169, 221, 0.86);
+  }
 
-    .flex-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-item {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    max-width: 1000px; /* Adjust the maximum width for larger items */
+  }
+
+  .logo-img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Media query for screens smaller than 768px */
+  @media (max-width: 768px) {
     .flex-item {
-        flex: 1;
-        text-align: center;
-        padding: 20px;
-        max-width: 1000px; /* Adjust the maximum width for larger items */
+      flex: 001 calc(50% - 20px);
+      margin: 10px; /* Add margin for spacing between items */
     }
-
-    .logo-img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Media query for screens smaller than 768px */
-    @media (max-width: 768px) {
-        .flex-item {
-            flex: 001 calc(50% - 20px);
-            margin: 10px; /* Add margin for spacing between items */
-        }
-    }
+  }
 </style>
 {% endblock content %}
