@@ -1,58 +1,79 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Settings Template</h1>
-    <div>
-        <h4>Sound Effect <label class="switch">
-            <input type="checkbox" id="sound-effect-toggle">
-            <span class="slider round"></span>
-        </label></h4>
-        <h4>Music Effect <label class="switch">
-            <input type="checkbox" id="music-effect-toggle">
-            <span class="slider round"></span>
-        </label></h4>
-        <h4>Dark Mode <label class="switch">
-            <input type="checkbox" id="dark-mode-toggle">
-            <span class="slider round"></span>
-        </label></h4>
+    <div id="settings-container">
         
-        <div id="dark-mode-dialog" class="modal">
-            <div class="modal-content">
-                <span class="close" id="close-dark-mode-dialog">&times;</span>
-                <h2>Dark Mode</h2>
-                <p>Enable or disable Dark Mode for a more comfortable viewing experience in low-light environments.</p>
+
+        <div class="settings-details">
+            <h1>Settings</h1>
+            <hr>
+            <h4>Sound Effect <label class="switch">
+                <input type="checkbox" id="sound-effect-toggle">
+                <span class="slider round"></span>
+            </label></h4>
+            <br>
+            <h4>Music Effect <label class="switch">
+                <input type="checkbox" id="music-effect-toggle">
+                <span class="slider round"></span>
+            </label></h4>
+            <!-- <h4>Dark Mode <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle">
+                <span class="slider round"></span>
+            </label></h4> -->
+
+            <!-- <div id="dark-mode-dialog" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-dark-mode-dialog">&times;</span>
+                    <h2>Dark Mode</h2>
+                    <p>Enable or disable Dark Mode for a more comfortable viewing experience in low-light environments.</p>
+                </div>
+            </div> -->
+
+            <!-- <h4>Notifications <label class="switch">
+                <input type="checkbox" id="notifications-toggle">
+                <span class="slider round"></span>
+            </label></h4> -->
+            <!-- <img src="{% static 'information.png' %}" style="width: 30px;"> -->
+            <br><h4>Help 
+                <img src="{% static 'information.png' %}" id="info-button" class="info-button" style="width: 30px;">
+            </h4>
+
+            <div id="help-dialog" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-help-dialog">&times;</span>
+                    <h2>Help</h2>
+                    <p>Welcome to the help section! 
+                        Here, you'll find assistance on how to navigate the game and maximize your language learning experience.</p>
+                    <p>Activity Types: Our game offers various activities to enhance your language skills. Explore vocabulary flashcards, 
+                        story-based activities, venue-based activities, and more!</p>
+                    <p>External Resources: Want to further expand your language learning? Check out our recommended slang dictionaries, 
+                        translator function and assessments for additional practice and knowledge.</p>
+                    <!-- Add your help content here -->
+                </div>
             </div>
         </div>
-        
-        <h4>Notifications <label class="switch">
-            <input type="checkbox" id="notifications-toggle">
-            <span class="slider round"></span>
-        </label></h4>
-        <h4>Help <label class="switch">
-            <input type="checkbox" id="help-toggle">
-            <span class="slider round"></span>
-        </label></h4>
-
-        <div id="help-dialog" class="modal">
-            <div class="modal-content">
-                <span class="close" id="close-help-dialog">&times;</span>
-                <h2>Help</h2>
-                <p>Welcome to the help section! 
-                    Here, you'll find assistance on how to navigate the game and maximize your language learning experience.</p>
-                <p>Activity Types: Our game offers various activities to enhance your language skills. Explore vocabulary flashcards, 
-                    story-based activities, venue-based activities, and more!</p>
-                <p>External Resources: Want to further expand your language learning? Check out our recommended slang dictionaries, 
-                    translator function and assessments for additional practice and knowledge.</p>
-                <!-- Add your help content here -->
-            </div>
-        </div>
-
-        
-        
     </div>
     
     <style>
-        /* CSS for the toggle switches */
+        /* CSS for the toggle switches and centering content */
+        #settings-container {
+            display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        height:500px
+    }
+
+    .settings-details{
+        background-color: rgba(136, 190, 212, 0.49);
+        padding: 20px;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        text-align: center;
+    }
+
         .switch {
             position: relative;
             display: inline-block;
@@ -135,53 +156,20 @@
         }
     </style>
 
-<script>
-    // JavaScript to show and hide the pop-up dialog
-    const helpToggle = document.getElementById('help-toggle');
-    const helpDialog = document.getElementById('help-dialog');
-    const closeHelpDialog = document.getElementById('close-help-dialog');
+    <script>
+        // JavaScript to show and hide the pop-up dialog
+        const infoButton = document.getElementById('info-button');
+        const helpDialog = document.getElementById('help-dialog');
+        const closeHelpDialog = document.getElementById('close-help-dialog');
 
-    helpToggle.addEventListener('change', function () {
-        if (helpToggle.checked) {
+        infoButton.addEventListener('click', function () {
             helpDialog.style.display = 'block';
-        } else {
+        });
+
+        closeHelpDialog.addEventListener('click', function () {
             helpDialog.style.display = 'none';
-        }
-    });
-
-    closeHelpDialog.addEventListener('click', function () {
-        helpDialog.style.display = 'none';
-        helpToggle.checked = false;
-    });
-
-
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-const darkModeDialog = document.getElementById('dark-mode-dialog');
-const closeDarkModeDialog = document.getElementById('close-dark-mode-dialog');
-
-darkModeToggle.addEventListener('change', function () {
-    if (darkModeToggle.checked) {
-        // Enable Dark Mode (you can apply your dark mode styles here)
-        showNotification('Dark Mode');
-    } else {
-        // Disable Dark Mode (you can revert to your default styles here)
-        hideNotification('Dark Mode');
-    }
-});
-
-closeDarkModeDialog.addEventListener('click', function () {
-    darkModeDialog.style.display = 'none';
-    darkModeToggle.checked = false;
-});
-
-function showNotification(settingName) {
-            alert(`You've turned ${settingName} on. Enjoy your Dark Mode experience!`);
-        }
-        
-        function hideNotification(settingName) {
-            alert(`You've turned ${settingName} off. Light up your experience!`);
-        }
-</script>
+        });
+    </script>
 </div>
 
 {% endblock content %}

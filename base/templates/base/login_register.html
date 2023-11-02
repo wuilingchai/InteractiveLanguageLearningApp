@@ -8,7 +8,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 80vh; /* This makes the container fill the viewport height */
+        height: 87vh; /* This makes the container fill the viewport height */
     }
 
     /* Style for the form */
@@ -63,6 +63,7 @@
 
 {% if page == 'login' %}
 <div class="form-container">
+    <h3>Login</h3>
     <form method="POST" action="">
         {% csrf_token %}
 
@@ -84,8 +85,15 @@
 {% else %}
 
 <div class="form-container">
+    <h3>Register</h3>
     <form method="POST" action="">
         {% csrf_token %}
+        <!-- {% for field in form %}
+        <div class="form_group form_group">
+            <label for="username">{{field.label}}</label>
+        </div>
+        {% endfor %} -->
+
         {{form.as_p}}
         <input type="submit" value="Register"/>
     </form>

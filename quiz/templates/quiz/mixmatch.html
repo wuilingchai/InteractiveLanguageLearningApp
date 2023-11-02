@@ -5,7 +5,7 @@
 <a href="{% url 'dialogchoice' %}">
   <button class="next-btn">Next</button>
 </a>
-<hr />
+<hr/>
 
 <!-- <div id="word-pairs">
     {% for word in words %}
@@ -17,8 +17,11 @@
 </div> -->
 <style>
 .next-btn {
-      /* position: absolute; */
-      left: 50px; /* Adjust the right position as needed */
+      position: absolute;
+      top: 250px;
+      width: 80px;
+      height: 40px;
+      right: 50px; /* Adjust the right position as needed */
       border-radius: 10px;
       background-color: rgba(49, 169, 221, 0.86);
     }
@@ -64,26 +67,27 @@ body {
 
 section {
   position: relative;
-  top: 100px;
+  top: 90px;
   margin: 0 auto;
-  width: 960px;
-  height: 420px;
+  width: auto;
+  height: auto;
 }
 
 ul {
   list-style: none;
   width: 240px;
-  font-size: 0.75em;
+  font-size: 1em;
   position: absolute;
-  padding: 10px;
+  text-align:justify;
+  padding: 50px;
 }
 
 ul#terms {
-  left: 200px;
+  left: 500px;
 }
 
 ul#defs {
-  left: 500px;
+  left: 1000px;
 }
 
 ul#terms li {
@@ -96,7 +100,7 @@ ul#defs li {
 }
 
 li {
-  float: left;
+  display: flex;
   height: 100px;
   width: 100px;
   margin: 10px;
@@ -107,6 +111,7 @@ li {
   border-radius: 0;
   -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
+  float: left;
 }
 
 li:hover {
@@ -201,13 +206,28 @@ button:focus {
   transition: transform .5s ease-out;
   transform: rotateX(360deg);
 }
+
+
+/* Adjust the size of list items for smaller screens */
+@media (max-width: 768px) {
+  li {
+    width: 70px;
+    height: 70px;
+    font-size: 14px; /* Adjust the font size as needed */
+  }
+}
+
+
+
+/* Adjust other styles as needed for responsiveness */
+
 </style>
 
 
 <section>
   <ul id="terms"></ul>
   <ul id="defs"></ul>
-  <button name="reset" class="reset-btn">RESET</button>
+  <!-- <button name="reset" class="reset-btn">RESET</button> -->
 </section>
 
 
@@ -219,54 +239,54 @@ window.onload = function() {
 var data = {
   terms: [{
       index: 0,
-      text: "SalesWay"
+      text: "Apple"
     }, {
       index: 1,
-      text: "Red Flags"
+      text: "Banana"
     }, {
       index: 2,
-      text: "Coach"
+      text: "Corn"
     }, {
       index: 3,
-      text: "Single Sales Objective"
+      text: "Durian"
     }, {
       index: 4,
-      text: "Opportunity Plan"
+      text: "Orange"
     }, {
       index: 5,
-      text: "Minimum Acceptable Action"
+      text: "Mango"
     },
 
   ],
   definitions: [{
       index: 0,
-      text: "SalesWay MSI Go-to-Customer Methodology"
+      text: "Epal"
     }, {
       index: 1,
-      text: "Indicate unknowns or uncertainties"
+      text: "Oren"
     }, {
       index: 2,
-      text: "Acts as a guide"
+      text: "Pisang"
     }, {
       index: 3,
-      text: "Objective aligned to an opportunity"
+      text: "Durian"
     }, {
       index: 4,
-      text: "Strategic in nature"
+      text: "Mangga"
     }, {
       index: 5,
-      text: "Your walk away point"
+      text: "Jagung"
     },
 
   ],
   //this creates matches for indexes. This is a sort of an Answer Sheet
   pairs: {
     0: 0,
-    1: 1,
-    2: 2,
+    1: 2,
+    2: 5,
     3: 3,
-    4: 4,
-    5: 5,
+    4: 1,
+    5: 4,
   }
 };
 
