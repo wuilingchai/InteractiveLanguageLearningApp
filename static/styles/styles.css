@@ -8,11 +8,17 @@
 .logo{
     display: flex;
     flex-wrap: wrap;
+    text-decoration: none; 
+    color: black;
+    /* style="text-decoration: none; color: black;" */
 }
 
 .logo img {
   height: 100px;
   width: auto;
+  text-decoration: none; 
+    color: black;
+  
 }
 
 .logo-name > h1{
