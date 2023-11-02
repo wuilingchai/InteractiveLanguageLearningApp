@@ -139,6 +139,14 @@
 
 }
 
+.translatedText {
+  border: 1px solid #ccc;
+  width: auto;
+  height: 80%;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 5px;
+}
 
 /* Rest of your existing CSS... */
 
@@ -192,7 +200,10 @@
       
             <div class="right-section">
               <h4>Translated:</h4>
-              <p>{{ translation }}</p>
+              <div class="translatedText">
+                <p>{{ translation }}</p>
+              </div>
+              
             </div>
           </div>
         </div>
