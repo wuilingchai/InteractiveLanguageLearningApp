@@ -7,6 +7,15 @@
 </a>
 <hr/>
 
+<section>
+  <div style="background-color: #00A0DF;">
+    <ul id="terms"></ul>
+    <ul id="defs"></ul>
+  </div>
+
+  <!-- <button name="reset" class="reset-btn">RESET</button> -->
+</section>
+
 <!-- <div id="word-pairs">
     {% for word in words %}
         <div class="word-pair">
@@ -28,6 +37,11 @@
 
 section {
   display: inline-flex;
+  position: relative;
+  top: 90px;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
   /* width: max-content; */
 } 
 
@@ -65,13 +79,15 @@ body {
   
 }
 
-section {
+/* section {
   position: relative;
   top: 90px;
   margin: 0 auto;
   width: auto;
   height: auto;
-}
+  background-color: #00A0DF;
+
+} */
 
 ul {
   list-style: none;
@@ -83,20 +99,24 @@ ul {
 }
 
 ul#terms {
-  left: 500px;
+  left: 450px;
 }
 
 ul#defs {
-  left: 1000px;
+  left: 800px;
 }
 
 ul#terms li {
   background: #7ac5e6;
   color: #ffffff;
+  border-radius: 10px;
+
 }
 
 ul#defs li {
-  color: #808080
+  color: #808080;
+  border-radius: 10px;
+
 }
 
 li {
@@ -112,6 +132,7 @@ li {
   -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
   float: left;
+  
 }
 
 li:hover {
@@ -141,7 +162,7 @@ ul li span {
   vertical-align: middle;
   text-align: center;
   padding: 10px;
-  padding-top: 0;
+  padding-top: 40px;
   transform: none;
   transition: opacity 0.2s ease-out;
 }
@@ -210,10 +231,9 @@ button:focus {
 
 /* Adjust the size of list items for smaller screens */
 @media (max-width: 768px) {
-  li {
-    width: 70px;
-    height: 70px;
-    font-size: 14px; /* Adjust the font size as needed */
+  section {
+    display: block; /* Change to block for stacking elements vertically */
+    text-align: center; /* Center align the elements */
   }
 }
 
@@ -224,11 +244,6 @@ button:focus {
 </style>
 
 
-<section>
-  <ul id="terms"></ul>
-  <ul id="defs"></ul>
-  <!-- <button name="reset" class="reset-btn">RESET</button> -->
-</section>
 
 
 <script>

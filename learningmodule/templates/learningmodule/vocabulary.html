@@ -37,11 +37,23 @@
       width: 200px;
       height: 200px;
     }
+
+    .flashcard-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 50px;
+      }
+
     .flashcard {
-      position: relative;
+      /* position: relative;
       perspective: 1000px;
       display: inline-block;
-      margin: 5px;
+      margin: 5px; */
+      width: 200px;
+        height: 200px;
+        margin: 10px;
+        perspective: 1500px;
     }
 
     .card-flip {
@@ -68,6 +80,14 @@
       padding: 10px;
     }
 
+    .front{
+      padding-top: 70px;
+      font-size: 1.24em;
+    }
+
+    .back{
+align-items: center;    }
+
     .container {
       display: flex;
       justify-content: center;
@@ -75,9 +95,7 @@
       flex-wrap: wrap;
     }
 
-    .flashcard {
-      width: calc(25% - 10px); /* 4 cards in a row with 10px margin */
-    }
+   
   </style>
 </head>
 <body>

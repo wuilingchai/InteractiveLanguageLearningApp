@@ -92,6 +92,8 @@
     }
     /* ---------------------------------- */
 
+
+
     .mcq .mcq-answer {
       position: relative;
       display: flex;
@@ -102,10 +104,13 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      background: #f5f5f5;
+      background: #afcfdf;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 10px;
       padding-right: 120px;
+      margin: 10px; /* Add margin to create spacing between MCQ items */
+      width: 100%; /* Each item takes the full width of its cell */
+
     }
 
     .mcq .mcq-answer p {
@@ -124,9 +129,11 @@
     }
 
     .mcq .mcq-answer p {
-      display: block;
+      display: inline-flex;
       margin: 1em;
       z-index: 10;
+  
+      
     }
 
     .mcq .feedback {
@@ -141,10 +148,14 @@
       z-index: 100;
       opacity: 1;
       visibility: hidden;
+      border-radius: 10px;
+
     }
 
     .mcq .correct .feedback {
       background-color: #3c763d;
+      border-radius: 10px;
+
     }
 
     .mcq input {
@@ -161,24 +172,33 @@
 
     .mcq input:hover ~ .highlight {
       background-color: #ccc;
+      border-radius: 10px;
+
     }
 
     .mcq input:checked ~ .highlight {
       background-color: #f2dede;
+      border-radius: 10px;
+
     }
 
     .mcq .correct input:checked ~ .highlight {
       background-color: #dff0d8;
+      border-radius: 10px;
+
     }
 
     .mcq input:checked ~ .circle {
       background-color: #ebccd1;
       border-color: #a94442;
+      border-radius: 10px;
+
     }
 
     .mcq .correct input:checked ~ .circle {
       background-color: #d6e9c6;
       border-color: #3c763d;
+      border-radius: 10px;
     }
 
     .mcq input:checked ~ .feedback {
@@ -188,6 +208,9 @@
       -webkit-animation-fill-mode: forwards;
       animation-fill-mode: forwards;
     }
+
+
+ 
   </style>
 </head>
 
@@ -227,7 +250,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <div id="mcq-section">
+        <div id="mcq-section" class="mcq-grid">
         </div>
       </div>
     </div>
