@@ -20,6 +20,14 @@
 <body>
     {% include 'navbar.html' %}
 
+    {% if messages %}
+    <ul class="message">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
     
     {% include 'base/sidemenu.html' %}
                 

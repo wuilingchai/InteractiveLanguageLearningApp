@@ -14,5 +14,7 @@ urlpatterns =[
     path('milestone/', views.milestone, name="milestone"),
     path('settingsapp/', views.settingsapp, name="settingsapp"),
     path('profile/', views.profile, name="profile"),
+    path('update-user/', views.updateUser, name="update-user"),
+
 
 ]

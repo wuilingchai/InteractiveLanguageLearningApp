@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from .forms import UserForm, MyUserCreationForm
 
 
 
@@ -58,18 +59,20 @@ def userProfile(request, pk):
     context = {'user': user}
     return render(request, 'base/profile.html', context)
 
-# @login_required(login_url='login')
-# def updateUser(request):
-#     user = request.user
-#     form = UserForm(instance=user)
+@login_required(login_url='login')
+def updateUser(request):
+    user = request.user
+    form = UserForm(instance=user)
 
-#     if request.method == 'POST':
-#         form = UserForm(request.POST, request.FILES, instance=user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('user-profile', pk=user.id)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=user.id)
 
-#     return render(request, 'base/update-user.html', {'form': form})
+    return render(request, 'base/update-user.html', {'form': form})
+
+
 
 def sidemenu(request):
     return render(request, 'base/sidemenu.html')

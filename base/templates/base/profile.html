@@ -54,11 +54,14 @@
         <hr>
         <div>
             <p>Profile Picture</p>
-        <p>Username: {{user.username}}</p>
-        <p>Email Address: {{user.email}}</p>
+            <p>Username: {{user.username}}</p>
+            <p>Email Address: {{user.email}}</p>
         </div>
-        
+        {% if request.user == user %}
+        <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+        {% endif %}
     </div>
+
 </div>
 
 {% endblock content %}
