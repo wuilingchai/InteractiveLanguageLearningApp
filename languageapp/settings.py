@@ -90,6 +90,8 @@ DATABASES = {
     }
 }
 
+# here need to define your own custom user otherwise will not work
+AUTH_USER_MODEL = 'base.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

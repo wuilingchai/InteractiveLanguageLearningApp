@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# need to use your own user modle not from django.auth
+from base.models import User
 
 class TranslationHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
