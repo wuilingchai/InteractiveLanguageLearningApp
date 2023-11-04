@@ -11,5 +11,6 @@ class User(AbstractUser):
 
     avatar = models.ImageField(null=True, default="")
 
-    USERNAME_FIELD = 'email'
+    # Temporary comment this first otherwise it clash with createsuperuser command
+    # USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
