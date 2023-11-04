@@ -9,10 +9,9 @@ from .models import User
 # User = get_user_model()
 
 class MyUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
+    class Meta:
         model = User
-        fields = UserCreationForm.Meta.fields + ('avatar', 'name')
-        # ['avatar', 'name', 'username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class UserForm(ModelForm):
