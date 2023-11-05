@@ -39,11 +39,11 @@
     }
 
     .flashcard-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 50px;
-      }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 50px;
+    }
 
     .flashcard {
       /* position: relative;
@@ -51,9 +51,9 @@
       display: inline-block;
       margin: 5px; */
       width: 200px;
-        height: 200px;
-        margin: 10px;
-        perspective: 1500px;
+      height: 200px;
+      margin: 10px;
+      perspective: 1500px;
     }
 
     .card-flip {
@@ -80,13 +80,14 @@
       padding: 10px;
     }
 
-    .front{
+    .front {
       padding-top: 70px;
       font-size: 1.24em;
     }
 
-    .back{
-align-items: center;    }
+    .back {
+      align-items: center;
+    }
 
     .container {
       display: flex;
@@ -94,8 +95,6 @@ align-items: center;    }
       align-items: center;
       flex-wrap: wrap;
     }
-
-   
   </style>
 </head>
 <body>
@@ -124,7 +123,38 @@ align-items: center;    }
     $(document).ready(function () {
       // Add click event to flip the flashcards
       $(".flashcard").click(function () {
-        $(this).find(".card-flip").toggleClass("flip");
+        var card = $(this).find(".card-flip");
+
+        // Toggle the 'flip' class and then make the AJAX call inside the 'setTimeout' function
+        // to ensure the class change has taken effect.
+        card.toggleClass("flip");
+
+        setTimeout(() => {
+          // Prepare the data to be sent
+          var flipped = card.hasClass("flip");
+          var vocabularyName = $(this).find(".front").text().trim();
+          var vocabularyDefinition = $(this).find(".back").text().trim();
+
+          var cardData = {
+            term: vocabularyName,
+            definition: vocabularyDefinition,
+            flipped: flipped,
+          };
+
+          // Send the data to the Django backend using AJAX
+          $.ajax({
+            url: "/api/learning-data/create/", // The URL to your Django API
+            method: "POST",
+            data: JSON.stringify(cardData),
+            contentType: "application/json",
+            success: function (response) {
+              console.log("Data sent successfully");
+            },
+            error: function (xhr, status, error) {
+              console.error("Error sending data", status, error);
+            },
+          });
+        }, 0); // Execute immediately after the call stack clears
       });
     });
   </script>

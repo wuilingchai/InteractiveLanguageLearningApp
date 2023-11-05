@@ -5,10 +5,10 @@
 <a href="{% url 'dialogchoice' %}">
   <button class="next-btn">Next</button>
 </a>
-<hr/>
+<hr />
 
 <section>
-  <div style="background-color: #00A0DF;">
+  <div style="background-color: #00a0df">
     <ul id="terms"></ul>
     <ul id="defs"></ul>
   </div>
@@ -25,61 +25,60 @@
     {% endfor %}
 </div> -->
 <style>
-.next-btn {
-      position: absolute;
-      top: 250px;
-      width: 80px;
-      height: 40px;
-      right: 50px; /* Adjust the right position as needed */
-      border-radius: 10px;
-      background-color: rgba(49, 169, 221, 0.86);
-    }
+  .next-btn {
+    position: absolute;
+    top: 250px;
+    width: 80px;
+    height: 40px;
+    right: 50px; /* Adjust the right position as needed */
+    border-radius: 10px;
+    background-color: rgba(49, 169, 221, 0.86);
+  }
 
-section {
-  display: inline-flex;
-  position: relative;
-  top: 90px;
-  margin: 0 auto;
-  width: auto;
-  height: auto;
-  /* width: max-content; */
-} 
+  section {
+    display: inline-flex;
+    position: relative;
+    top: 90px;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    /* width: max-content; */
+  }
 
-body {
-  line-height: 1;
-}
+  body {
+    line-height: 1;
+  }
 
-ol,
-ul {
-  list-style: none;
-}
+  ol,
+  ul {
+    list-style: none;
+  }
 
-blockquote,
-q {
-  quotes: none;
-}
+  blockquote,
+  q {
+    quotes: none;
+  }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: "";
+    content: none;
+  }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-/*style*/
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+  /*style*/
 
-body {
-  /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
-  font-weight: 300;
-  
-}
+  body {
+    /* font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+    font-weight: 300;
+  }
 
-/* section {
+  /* section {
   position: relative;
   top: 90px;
   margin: 0 auto;
@@ -89,372 +88,357 @@ body {
 
 } */
 
-ul {
-  list-style: none;
-  width: 240px;
-  font-size: 1em;
-  position: absolute;
-  text-align:justify;
-  padding: 50px;
-}
-
-ul#terms {
-  left: 450px;
-}
-
-ul#defs {
-  left: 800px;
-}
-
-ul#terms li {
-  background: #7ac5e6;
-  color: #ffffff;
-  border-radius: 10px;
-
-}
-
-ul#defs li {
-  color: #808080;
-  border-radius: 10px;
-
-}
-
-li {
-  display: flex;
-  height: 100px;
-  width: 100px;
-  margin: 10px;
-  background: white;
-  text-align: center;
-  cursor: pointer;
-  transition: all .2s ease-out;
-  border-radius: 0;
-  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
-  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
-  float: left;
-  
-}
-
-li:hover {
-  transform: scale(1.05, 1.05);
-  -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
-}
-
-li[data-selected] {
-  transform: scale(1.05, 1.05);
-  box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.187);
-  outline: 4px solid #5fb828;
-}
-
-div#counter {
-  position: absolute;
-  left: 600px;
-  margin: 1rem;
-  font-size: 3em;
-  display: none;
-}
-
-ul li span {
-  width: 100px;
-  height: 100px;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  padding: 10px;
-  padding-top: 40px;
-  transform: none;
-  transition: opacity 0.2s ease-out;
-}
-
-span:hover {
-  transform: none;
-}
-
-.reset-btn {
-  position: absolute;
-  padding: 0;
-  margin: 0;
-  width: 100px;
-  height: 30px;
-  left: 640px;
-  bottom: 0px;
-  font-weight: bold;
-  transition: background-color 0.3s ease-out;
-  background-color: #00A0DF;
-  border-radius: 3px;
-  border: none;
-  color: #fff;
-  -webkit-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 1);
-  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 1);
-}
-
-button:hover {
-  background-color: #30BCF3;
-  cursor: pointer;
-}
-
-button:active {
-  box-shadow: none;
-  outline: none;
-  transform: scale(0.95, 0.95);
-}
-
-button:focus {
-  outline: none;
-}
-
-.score {
-  background: none!important;
-  box-shadow: none;
-  color: #fff!important;
-  background: #00A0DF!important;
-  border-radius: 15px;
-}
-
-.score:hover {
-  cursor: default;
-  transform: none;
-  box-shadow: none;
-}
-
-.fadeOut li span {
-  transition: opacity 0.25s ease-out;
-  opacity: 0;
-}
-
-.fadeOut li {
-  transition: transform .5s ease-out;
-  transform: rotateX(360deg);
-}
-
-
-/* Adjust the size of list items for smaller screens */
-@media (max-width: 768px) {
-  section {
-    display: block; /* Change to block for stacking elements vertically */
-    text-align: center; /* Center align the elements */
+  ul {
+    list-style: none;
+    width: 240px;
+    font-size: 1em;
+    position: absolute;
+    text-align: justify;
+    padding: 50px;
   }
-}
 
+  ul#terms {
+    left: 450px;
+  }
 
+  ul#defs {
+    left: 800px;
+  }
 
-/* Adjust other styles as needed for responsiveness */
+  ul#terms li {
+    background: #7ac5e6;
+    color: #ffffff;
+    border-radius: 10px;
+  }
 
+  ul#defs li {
+    color: #808080;
+    border-radius: 10px;
+  }
+
+  li {
+    display: flex;
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    background: white;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    border-radius: 0;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 1);
+    float: left;
+  }
+
+  li:hover {
+    transform: scale(1.05, 1.05);
+    -webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 1);
+  }
+
+  li[data-selected] {
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.187);
+    outline: 4px solid #5fb828;
+  }
+
+  div#counter {
+    position: absolute;
+    left: 600px;
+    margin: 1rem;
+    font-size: 3em;
+    display: none;
+  }
+
+  ul li span {
+    width: 100px;
+    height: 100px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px;
+    padding-top: 40px;
+    transform: none;
+    transition: opacity 0.2s ease-out;
+  }
+
+  span:hover {
+    transform: none;
+  }
+
+  .reset-btn {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    height: 30px;
+    left: 640px;
+    bottom: 0px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-out;
+    background-color: #00a0df;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    -webkit-box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 1);
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 1);
+  }
+
+  button:hover {
+    background-color: #30bcf3;
+    cursor: pointer;
+  }
+
+  button:active {
+    box-shadow: none;
+    outline: none;
+    transform: scale(0.95, 0.95);
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .score {
+    background: none !important;
+    box-shadow: none;
+    color: #fff !important;
+    background: #00a0df !important;
+    border-radius: 15px;
+  }
+
+  .score:hover {
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .fadeOut li span {
+    transition: opacity 0.25s ease-out;
+    opacity: 0;
+  }
+
+  .fadeOut li {
+    transition: transform 0.5s ease-out;
+    transform: rotateX(360deg);
+  }
+
+  /* Adjust the size of list items for smaller screens */
+  @media (max-width: 768px) {
+    section {
+      display: block; /* Change to block for stacking elements vertically */
+      text-align: center; /* Center align the elements */
+    }
+  }
+
+  /* Adjust other styles as needed for responsiveness */
 </style>
 
-
-
-
 <script>
-    //Execute a JavaScript immediately after a page has been loaded
-window.onload = function() {
+  window.onload = function () {
+    var selectedTerm = null,
+      selectedDef = null,
+      termsContainer = document.querySelector("#terms"),
+      defsContainer = document.querySelector("#defs");
 
-//Data for terms and definitions. This can be stored in a separate .js file, in a JSON file or here in the main file
-var data = {
-  terms: [{
-      index: 0,
-      text: "Apple"
-    }, {
-      index: 1,
-      text: "Banana"
-    }, {
-      index: 2,
-      text: "Corn"
-    }, {
-      index: 3,
-      text: "Durian"
-    }, {
-      index: 4,
-      text: "Orange"
-    }, {
-      index: 5,
-      text: "Mango"
-    },
-
-  ],
-  definitions: [{
-      index: 0,
-      text: "Epal"
-    }, {
-      index: 1,
-      text: "Oren"
-    }, {
-      index: 2,
-      text: "Pisang"
-    }, {
-      index: 3,
-      text: "Durian"
-    }, {
-      index: 4,
-      text: "Mangga"
-    }, {
-      index: 5,
-      text: "Jagung"
-    },
-
-  ],
-  //this creates matches for indexes. This is a sort of an Answer Sheet
-  pairs: {
-    0: 0,
-    1: 2,
-    2: 5,
-    3: 3,
-    4: 1,
-    5: 4,
-  }
-};
-
-var selectedTerm = null, //to make sure none is selected onload
-  selectedDef = null,
-  termsContainer = document.querySelector("#terms"), //list of terms
-  defsContainer = document.querySelector("#defs"); //list of definitions
-
-//This function takes two arguments, that is one term and one def to compare if they match. It returns True or False after compairing values of the "pairs" object property.     
-function isMatch(termIndex, defIndex) {
-  return data.pairs[termIndex] === defIndex;
-}
-
-//This function adds HTML elements and content to the specified container (UL).
-function createListHTML(list, container) {
-  container.innerHTML = ""; //first, clean up any existing LI elements
-  for (var i = 0; i < 6; i++) {
-    container.innerHTML = container.innerHTML + "<li data-index='" + list[i]["index"] + "'>" + "<span>" + list[i]["text"] + "</span>" + "</li>";
-    //OR shorter version: container.innerHTML += "<li data-index='" + list[i]["index"] + "'>" + list[i]["text"] + "</li>";
-  }
-}
-
-createListHTML(data.terms, termsContainer);
-createListHTML(data.definitions, defsContainer);
-
-//listen for a "click" event on a list of Terms and store the clicked object in the target object
-termsContainer.addEventListener("click", function(e) {
-  var target = e.target.parentNode;
-  if (target.className === "score")
-    return;
-  var termIndex = Number(target.getAttribute("data-index"));
-  //warunek na to, że tylko jedno LI może być zaznaczone  
-  if (selectedTerm !== null && selectedTerm !== termIndex) {
-    termsContainer.querySelector("li[data-index='" + selectedTerm + "']").removeAttribute("data-selected");
-  }
-
-  //kasowanie odznaczenia  
-  if (target.hasAttribute("data-selected")) {
-    target.removeAttribute("data-selected");
-    selectedTerm = null;
-  }
-  //zaznaczanie na klikniecie    	
-  else {
-    target.setAttribute("data-selected", true);
-    selectedTerm = termIndex;
-  }
-
-  if (selectedTerm !== null && selectedDef !== null) {
-    var term = document.querySelector("#terms [data-index='" + selectedTerm + "']");
-    var def = document.querySelector("#defs [data-index='" + selectedDef + "']");
-    if (isMatch(selectedTerm, selectedDef)) {
-      term.className = "score";
-      def.className = "score";
+    function isMatch(data, termIndex, defIndex) {
+      return data.pairs[termIndex] === defIndex;
     }
 
-    selectedTerm = null;
-    selectedDef = null;
-    term.removeAttribute("data-selected");
-    def.removeAttribute("data-selected");
-
-  }
-})
-
-defsContainer.addEventListener("click", function(e) {
-  var target = e.target.parentNode;
-  if (target.className === "score")
-    return;
-  var defIndex = Number(target.getAttribute("data-index"));
-
-  if (selectedDef !== null && selectedDef !== defIndex) {
-    defsContainer.querySelector("li[data-index='" + selectedDef + "']").removeAttribute("data-selected");
-  }
-
-  if (target.hasAttribute("data-selected"))
-    target.removeAttribute("data-selected");
-  else
-    target.setAttribute("data-selected", true);
-  selectedDef = Number(target.getAttribute("data-index"));
-  if (selectedTerm !== null && selectedDef !== null) {
-    //var term = document.querySelector("#terms [data-index='"+selectedTerm+"']");
-    var term = termsContainer.querySelector("[data-index='" + selectedTerm + "']");
-    //var def = document.querySelector("#defs [data-index='"+selectedDef+"']");
-    var def = defsContainer.querySelector("[data-index='" + selectedDef + "']");
-    if (isMatch(selectedTerm, selectedDef)) {
-
-      term.className = "score";
-      def.className = "score";
+    // Moved inside the initializeGame function
+    function createListHTML(data, list, container) {
+      container.innerHTML = "";
+      list.forEach((item) => {
+        container.innerHTML +=
+          "<li data-index='" +
+          item.index +
+          "'>" +
+          "<span>" +
+          item.text +
+          "</span>" +
+          "</li>";
+      });
     }
-    selectedTerm = null; //odznacz kliknięcie
-    selectedDef = null; //odznacz kliknięcie  
-    term.removeAttribute("data-selected");
-    def.removeAttribute("data-selected");
-  }
-})
 
-function reset() {
-  var resetTerms = termsContainer.querySelectorAll("li");
-  var resetDefs = defsContainer.querySelectorAll("li");
-  for (var i = 0; i < resetTerms.length; i++) {
-    resetTerms[i].removeAttribute("class", "score");
-    resetTerms[i].removeAttribute("data-selected");
-  }
-  for (i = 0; i < resetDefs.length; i++) {
-    resetDefs[i].removeAttribute("class", "score");
-    resetDefs[i].removeAttribute("data-selected");
-  }
+    // Now it accepts data as a parameter
+    function shuffle(data) {
+      randomSort(data.terms);
+      randomSort(data.definitions);
+      createListHTML(data, data.terms, termsContainer);
+      createListHTML(data, data.definitions, defsContainer);
+    }
 
-  selectedTerm = null;
-  selectedDef = null;
-}
+    function randomSort(array) {
+      var currentIndex = array.length,
+        temporaryValue,
+        randomIndex;
 
-function shuffle() {
-  randomSort(data.terms)
-  randomSort(data.definitions)
-  createListHTML(data.terms, termsContainer)
-  createListHTML(data.definitions, defsContainer)
-}
+      // While there remain elements to shuffle...
+      while (currentIndex !== 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-function randomSort(array) {
-  var currentIndex = array.length,
-    temporaryValue, randomIndex;
+        // And swap it with the current element. SWAP
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+      }
 
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
+      return array;
+    }
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+    function reset(termsContainer, defsContainer) {
+      var resetTerms = termsContainer.querySelectorAll("li");
+      var resetDefs = defsContainer.querySelectorAll("li");
+      for (var i = 0; i < resetTerms.length; i++) {
+        resetTerms[i].removeAttribute("class", "score");
+        resetTerms[i].removeAttribute("data-selected");
+      }
+      for (i = 0; i < resetDefs.length; i++) {
+        resetDefs[i].removeAttribute("class", "score");
+        resetDefs[i].removeAttribute("data-selected");
+      }
 
-    // And swap it with the current element. SWAP
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+      selectedTerm = null;
+      selectedDef = null;
+    }
 
-  return array;
-}
+    function gameHandlers(data) {
+      // Functions like createListHTML and shuffle are now called with data as an argument
+      createListHTML(data, data.terms, termsContainer);
+      createListHTML(data, data.definitions, defsContainer);
 
-shuffle();
-document.querySelector("button").addEventListener("click", function() {
-  reset();
-  termsContainer.setAttribute("class", "fadeOut");
-  defsContainer.setAttribute("class", "fadeOut");
-  setTimeout(function() {
-      shuffle();
-      termsContainer.removeAttribute("class", "fadeOut");
-      defsContainer.removeAttribute("class", "fadeOut");
-    }, 450)
-    //shuffle();
+      shuffle(data); // Pass the data object to the shuffle function
 
-});
+      document.querySelector("button").addEventListener("click", function () {
+        reset(termsContainer, defsContainer);
+        // ... (no changes in the setTimeout)
+        setTimeout(function () {
+          shuffle(data);
+          termsContainer.removeAttribute("class", "fadeOut");
+          defsContainer.removeAttribute("class", "fadeOut");
+        }, 450);
+      });
 
-}
+      // ... (No changes in the termsContainer and defsContainer event listeners)
+      termsContainer.addEventListener("click", function (e) {
+        var target = e.target.parentNode;
+        if (target.className === "score") return;
+        var termIndex = Number(target.getAttribute("data-index"));
+        //warunek na to, że tylko jedno LI może być zaznaczone
+        if (selectedTerm !== null && selectedTerm !== termIndex) {
+          termsContainer
+            .querySelector("li[data-index='" + selectedTerm + "']")
+            .removeAttribute("data-selected");
+        }
+
+        //kasowanie odznaczenia
+        if (target.hasAttribute("data-selected")) {
+          target.removeAttribute("data-selected");
+          selectedTerm = null;
+        }
+        //zaznaczanie na klikniecie
+        else {
+          target.setAttribute("data-selected", true);
+          selectedTerm = termIndex;
+        }
+
+        if (selectedTerm !== null && selectedDef !== null) {
+          var term = document.querySelector(
+            "#terms [data-index='" + selectedTerm + "']"
+          );
+          var def = document.querySelector(
+            "#defs [data-index='" + selectedDef + "']"
+          );
+          if (isMatch(data, termIndex, selectedDef)) {
+            // Use data and indices
+            term.className = "score";
+            def.className = "score";
+          }
+
+          selectedTerm = null;
+          selectedDef = null;
+          term.removeAttribute("data-selected");
+          def.removeAttribute("data-selected");
+        }
+      });
+
+      defsContainer.addEventListener("click", function (e) {
+        var target = e.target.parentNode;
+        if (target.className === "score") return;
+        var defIndex = Number(target.getAttribute("data-index"));
+
+        if (selectedDef !== null && selectedDef !== defIndex) {
+          defsContainer
+            .querySelector("li[data-index='" + selectedDef + "']")
+            .removeAttribute("data-selected");
+        }
+
+        if (target.hasAttribute("data-selected"))
+          target.removeAttribute("data-selected");
+        else target.setAttribute("data-selected", true);
+        selectedDef = Number(target.getAttribute("data-index"));
+        if (selectedTerm !== null && selectedDef !== null) {
+          //var term = document.querySelector("#terms [data-index='"+selectedTerm+"']");
+          var term = termsContainer.querySelector(
+            "[data-index='" + selectedTerm + "']"
+          );
+          //var def = document.querySelector("#defs [data-index='"+selectedDef+"']");
+          var def = defsContainer.querySelector(
+            "[data-index='" + selectedDef + "']"
+          );
+          if (isMatch(data, selectedTerm, defIndex)) {
+            // Use data and indices
+            term.className = "score";
+            def.className = "score";
+          }
+          selectedTerm = null; //odznacz kliknięcie
+          selectedDef = null; //odznacz kliknięcie
+          term.removeAttribute("data-selected");
+          def.removeAttribute("data-selected");
+        }
+      });
+    }
+
+    // Fetch the data from the API endpoint
+    fetch("/api/learning-data/")
+      .then((response) => response.json())
+      .then((dataFromAPI) => {
+        // Flattening the array of arrays into a single array
+        const flatData = dataFromAPI.flat();
+
+        // Extracting terms and definitions into separate arrays
+        const terms = flatData.map((item, index) => ({
+          index: index,
+          text: item.term,
+        }));
+
+        const definitions = flatData.map((item, index) => ({
+          index: index,
+          text: item.definition,
+        }));
+
+        // Assuming each term matches with the definition at the same index
+        const pairs = terms.reduce((acc, term) => {
+          acc[term.index] = term.index; // This assumes that the term's index matches the definition's index
+          return acc;
+        }, {});
+
+        var data = {
+          terms: terms,
+          definitions: definitions,
+          pairs: pairs,
+        };
+
+        console.log(data);
+
+        // After data is initialized, setup the game handlers.
+        gameHandlers(data);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  };
 </script>
 
 {% endblock content %}
