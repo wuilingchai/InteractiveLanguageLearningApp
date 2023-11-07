@@ -2,9 +2,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from rest_framework.parsers import JSONParser
-from .models import LearningData
+from .models import LearningData, DialogData
 from base.models import User
-from .serializers import LearningDataSerializer
+from .serializers import LearningDataSerializer, DialogDataSerializer
 
 @csrf_exempt
 @require_http_methods(["GET"])
@@ -38,9 +38,13 @@ def learning_data_create(request):
         # Try to retrieve the existing LearningData instance for the user
         try:
             learning_data = LearningData.objects.get(user=user)
-            # If found, append the new data object to the existing array
+
+            # Check if the data with the same 'term' and 'definition' already exists in the saved data
             if not isinstance(learning_data.data, list):
-                learning_data.data = []  # Initialize as list if it's not
+                learning_data.data = []  # Initialize as a list if it's not
+
+            if any(existing_entry['term'] == data['term'] and existing_entry['definition'] == data['definition'] for existing_entry in learning_data.data):
+                return JsonResponse({'message': 'Data already exists'}, status=200)
 
             learning_data.data.append(data)
             learning_data.save()
@@ -54,6 +58,8 @@ def learning_data_create(request):
                 return JsonResponse(serializer.data, status=201)
             else:
                 return JsonResponse(serializer.errors, status=400)
+
+
 
 @csrf_exempt
 @require_http_methods(["GET", "PUT", "DELETE"])
@@ -81,3 +87,82 @@ def learning_data_detail(request, pk):
     elif request.method == 'DELETE':
         learning_data.delete()
         return JsonResponse({'message': 'Learning data was deleted successfully'}, status=204)
+
+
+##########dialog######
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def dialog_data_list(request):
+    """
+    List all dialog data for the logged-in user.
+    """
+    if request.method == 'GET':
+        # Filter the dialog data by the logged-in user's ID
+        dialog_data = DialogData.objects.filter(user=request.user)
+        serializer = DialogDataSerializer(dialog_data, many=True)
+        data_attribute_list = [item['data'] for item in serializer.data if 'data' in item]
+
+        print(data_attribute_list)
+        return JsonResponse(data_attribute_list, safe=False)
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def dialog_data_create(request):
+    """
+    Append to or create dialog data instance.
+    """
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        
+        # Retrieve the authenticated user from the request
+        user = request.user if request.user.is_authenticated else None
+        if not user:
+            return JsonResponse({'error': 'User not authenticated.'}, status=401)
+
+        # Try to retrieve the existing DialogData instance for the user
+        try:
+            dialog_data = DialogData.objects.get(user=user)
+            # If found, append the new data object to the existing array
+            if not isinstance(dialog_data.data, list):
+                dialog_data.data = []  # Initialize as list if it's not
+
+            dialog_data.data.append(data)
+            dialog_data.save()
+            return JsonResponse({'message': 'Data updated successfully'}, status=200)
+
+        except DialogData.DoesNotExist:
+            # If not found, create a new instance with the data as a list
+            serializer = DialogDataSerializer(data={'user': user.id, 'data': [data]})
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse(serializer.data, status=201)
+            else:
+                return JsonResponse(serializer.errors, status=400)
+
+@csrf_exempt
+@require_http_methods(["GET", "PUT", "DELETE"])
+def dialog_data_detail(request, pk):
+    """
+    Retrieve, update or delete a learning data instance.
+    """
+    try:
+        dialog_data = DialogData.objects.get(pk=pk)
+    except DialogData.DoesNotExist:
+        return JsonResponse({'message': 'The dialog data does not exist'}, status=404)
+
+    if request.method == 'GET':
+        serializer = DialogDataSerializer(dialog_data)
+        return JsonResponse(serializer.data)
+
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = DialogDataSerializer(dialog_data, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors, status=400)
+
+    elif request.method == 'DELETE':
+        dialog_data.delete()
+        return JsonResponse({'message': 'Dialog data was deleted successfully'}, status=204)

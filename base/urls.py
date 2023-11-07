@@ -20,4 +20,9 @@ urlpatterns =[
     path('api/learning-data/', api.learning_data_list, name='learning-data-list'),
     path('api/learning-data/create/', api.learning_data_create, name='learning-data-create'),
     path('api/learning-data/<int:pk>/', api.learning_data_detail, name='learning-data-detail'),
+
+        
+    path('api/dialog-data/', api.dialog_data_list, name='dialog-data-list'),
+    path('api/dialog-data/create/', api.dialog_data_create, name='dialog-data-create'),
+    path('api/dialog-data/<int:pk>/', api.dialog_data_detail, name='dialog-data-detail'),
 ]

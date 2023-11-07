@@ -273,7 +273,7 @@
       .then(response => response.json())
       .then(data => {
           const mcqSection = document.getElementById('mcq-section');
-          
+          console.log(data)
           data.forEach(question => {
               let questionDiv = document.createElement('div');
               questionDiv.classList.add('mcq');
