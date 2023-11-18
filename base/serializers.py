@@ -1,12 +1,8 @@
 from rest_framework import serializers
-from .models import LearningData, DialogData
+from .models import LearningData
 
 class LearningDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = LearningData
         fields = ['id', 'user', 'data']
 
-class DialogDataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DialogData
-        fields = ['id', 'user', 'data']

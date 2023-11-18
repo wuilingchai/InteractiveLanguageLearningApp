@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, LearningData, DialogData
+from .models import User, LearningData
 
 # Register your models here.
 # from slangdictionary.models import Slang
@@ -7,5 +7,5 @@ from .models import User, LearningData, DialogData
 
 admin.site.register(User)
 admin.site.register(LearningData)
-admin.site.register(DialogData)
+
 # admin.site.register(Vocabulary)
