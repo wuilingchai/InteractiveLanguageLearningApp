@@ -150,4 +150,42 @@
 <a href="{% url 'scenariobased' %}">
   <button class="done-btn">Done</button>
 </a>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+    $(".done-btn").click(function(){
+      var clicked = $(this).find(".btn-click");
+
+      clicked.toggleClass("click");
+
+      setTimeout(() => {
+        var pharmacy = clicked.hasClass("click");
+
+        var pharmacyData = {
+          pharmacy: clicked,
+        };
+
+      $.ajax({
+        url: "/api/learning-data/create/",
+        method: "POST",
+        data: JSON.stringify(pharmacyData),
+        contentType: "application/json",
+        success: function(response){
+          console.log("Data sent successfully");
+        },
+        error: function (xhr, status, error){
+          console.error("Error sending data", status, error);
+        },
+      });
+      }, 0);
+    });
+  });
+    
+</script>
+
 {% endblock content %}

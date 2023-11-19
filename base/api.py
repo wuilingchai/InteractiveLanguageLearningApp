@@ -40,8 +40,12 @@ def learning_data_create(request):
             learning_data = LearningData.objects.get(user=user)
 
             # Check if the data with the same 'term' and 'definition' already exists in the saved data
-            if not isinstance(learning_data.data, list):
-                learning_data.data = []  # Initialize as a list if it's not
+            if not isinstance(learning_data.data, dict): #changed list to dict
+                learning_data.data = []  # Initialize as a list if it's not  (initialize as dictionary if its not)
+
+                #update  or create the mixmatch and dialog keys in the data dictionary
+                learning_data.data['mixmatch'] = data.get('mixmatch', [])
+                learning_data.data['dialog'] = data.get('dialog', [])
 
             if any(existing_entry['term'] == data['term'] and existing_entry['definition'] == data['definition'] for existing_entry in learning_data.data):
                 return JsonResponse({'message': 'Data already exists'}, status=200)
