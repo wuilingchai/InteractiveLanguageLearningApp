@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .forms import WordMatchForm
 from .models import Word, Choices 
+from learningmodule.models import Vocabulary, Pharmacy, Restaurant, Airport, Teatime, Transportation, Direction
+
 
 
 
@@ -19,6 +21,12 @@ def mixmatch(request):
 
 @login_required(login_url='login')
 def dialogchoice(request):
-    choices = Choices.objects.all()
-    context = {'choices': choices}
+    pharmacys = Pharmacy.objects.all()
+    restaurants = Restaurant.objects.all()
+    airport = Airport.objects.all()
+    transportation = Transportation.objects.all()
+    teatime = Teatime.objects.all()
+    direction = Direction.objects.all()
+    context = {'pharmacys':pharmacys, 'restaurants': restaurants, 'airport': airport, 'transporation': transportation, 'teatime':teatime, 'direction': direction}
+
     return render(request, 'quiz/dialogchoice.html', context)

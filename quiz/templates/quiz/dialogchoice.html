@@ -34,6 +34,7 @@
       height: 80%; /* Increase the height for a taller chatbox */
       width: 80%;
       border-radius: 10px;
+      /* box-shadow: 5px 5px 15px rgba(119, 119, 119, 0.5); */
     }
 
     .top-bar {
@@ -60,7 +61,7 @@
       width: 100%;
       opacity: 0.85;
       top: 60px;
-      height: 100%;
+      height: 100%; /* Increase the height for a taller chat content */
     }
 
     .incoming,
@@ -233,10 +234,11 @@
         <div class="name">Pharmacy</div>
       </div>
       <div class="middle">
-        <div class="pharmacy">
+        {% for pharmacy in pharmacys %}
+        <div class="pharmacy-dialog">
+          <p>{{pharmacy.pharmacist}}</p>
           <div class="incoming">
-            //have to import the data from pharmacy dialog
-            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+            <div class="bubble">TEST</div>
           </div>
           <div class="outgoing">
             <div class="bubble">{{ pharmacy.customer }}</div>
@@ -275,6 +277,7 @@
       </div>
     </div>
   </div>
+  {% endfor %}
 </div>
 <br />
 <div class="restaurant">
@@ -286,7 +289,7 @@
         <div class="name">Pharmacy</div>
       </div>
       <div class="middle">
-        <div class="pharmacy">
+        <div class="restaurant-dialog">
           <div class="incoming">
             <div class="bubble">{{ pharmacy.pharmacist }}</div>
           </div>
@@ -337,7 +340,7 @@
         <div class="name">Pharmacy</div>
       </div>
       <div class="middle">
-        <div class="pharmacy">
+        <div class="aiport-dialog">
           <div class="incoming">
             <div class="bubble">{{ pharmacy.pharmacist }}</div>
           </div>
@@ -385,7 +388,7 @@
   <div class="container">
     <div class="chatbox">
       <div class="top-bar">
-        <div class="name">Pharmacy</div>
+        <div class="name">direction-dialog</div>
       </div>
       <div class="middle">
         <div class="pharmacy">
@@ -436,7 +439,7 @@
   <div class="container">
     <div class="chatbox">
       <div class="top-bar">
-        <div class="name">Pharmacy</div>
+        <div class="name">teatime-dialog</div>
       </div>
       <div class="middle">
         <div class="pharmacy">
@@ -487,7 +490,7 @@
   <div class="container">
     <div class="chatbox">
       <div class="top-bar">
-        <div class="name">Pharmacy</div>
+        <div class="name">transportation-dialog</div>
       </div>
       <div class="middle">
         <div class="pharmacy">
