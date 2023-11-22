@@ -21,6 +21,49 @@ def learning_data_list(request):
         print(data_attribute_list)
         return JsonResponse(data_attribute_list, safe=False)
 
+# @csrf_exempt
+# @require_http_methods(["POST"])
+# def learning_data_create(request):
+#     """
+#     Append to or create learning data instance.
+#     """
+#     if request.method == 'POST':
+#         data = JSONParser().parse(request)
+        
+#         # Retrieve the authenticated user from the request
+#         user = request.user if request.user.is_authenticated else None
+#         if not user:
+#             return JsonResponse({'error': 'User not authenticated.'}, status=401)
+
+#         # Try to retrieve the existing LearningData instance for the user
+#         try:
+#             learning_data = LearningData.objects.get(user=user)
+
+#             # Check if the data with the same 'term' and 'definition' already exists in the saved data
+#             if not isinstance(learning_data.data, dict): #changed list to dict
+#                 learning_data.data = []  # Initialize as a list if it's not  (initialize as dictionary if its not)
+
+#                 #update  or create the mixmatch and dialog keys in the data dictionary
+#                 learning_data.data['mixmatch'] = data.get('mixmatch', [])
+#                 learning_data.data['dialog'] = data.get('dialog', [])
+
+#             if any(existing_entry['term'] == data['term'] and existing_entry['definition'] == data['definition'] for existing_entry in learning_data.data):
+#                 return JsonResponse({'message': 'Data already exists'}, status=200)
+
+#             learning_data.data.append(data)
+#             learning_data.save()
+#             return JsonResponse({'message': 'Data updated successfully'}, status=200)
+
+#         except LearningData.DoesNotExist:
+#             # If not found, create a new instance with the data as a list
+#             serializer = LearningDataSerializer(data={'user': user.id, 'data': [data]})
+#             if serializer.is_valid():
+#                 serializer.save()
+#                 return JsonResponse(serializer.data, status=201)
+#             else:
+#                 return JsonResponse(serializer.errors, status=400)
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def learning_data_create(request):
@@ -29,7 +72,7 @@ def learning_data_create(request):
     """
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        
+
         # Retrieve the authenticated user from the request
         user = request.user if request.user.is_authenticated else None
         if not user:
@@ -40,29 +83,43 @@ def learning_data_create(request):
             learning_data = LearningData.objects.get(user=user)
 
             # Check if the data with the same 'term' and 'definition' already exists in the saved data
-            if not isinstance(learning_data.data, dict): #changed list to dict
-                learning_data.data = []  # Initialize as a list if it's not  (initialize as dictionary if its not)
+            if not isinstance(learning_data.data, dict):  # changed list to dict
+                learning_data.data = {}  # Initialize as a dictionary if it's not
 
-                #update  or create the mixmatch and dialog keys in the data dictionary
-                learning_data.data['mixmatch'] = data.get('mixmatch', [])
-                learning_data.data['dialog'] = data.get('dialog', [])
+            # Determine whether to append data to 'mixmatch' or 'dialog' based on the endpoint
+            endpoint_type = data.get('endpoint_type')
+            if endpoint_type == 'mixmatch':
+                if 'mixmatch' not in learning_data.data:
+                    learning_data.data['mixmatch'] = []
 
-            if any(existing_entry['term'] == data['term'] and existing_entry['definition'] == data['definition'] for existing_entry in learning_data.data):
-                return JsonResponse({'message': 'Data already exists'}, status=200)
+                # Check for duplicates before appending
+                if any(existing_entry['term'] == data['term'] and existing_entry['definition'] == data['definition'] for existing_entry in learning_data.data['mixmatch']):
+                    return JsonResponse({'message': 'Data already exists'}, status=200)
 
-            learning_data.data.append(data)
+                learning_data.data['mixmatch'].append(data)
+            elif endpoint_type == 'dialog':
+                if 'dialog' not in learning_data.data:
+                    learning_data.data['dialog'] = []
+
+                # Check for duplicates before appending
+                if any(existing_entry['dialog_type'] == data['dialog_type'] for existing_entry in learning_data.data['dialog']):
+                    return JsonResponse({'message': 'Data already exists'}, status=200)
+
+                learning_data.data['dialog'].append(data)
+            else:
+                return JsonResponse({'error': 'Invalid endpoint_type'}, status=400)
+
             learning_data.save()
             return JsonResponse({'message': 'Data updated successfully'}, status=200)
 
         except LearningData.DoesNotExist:
-            # If not found, create a new instance with the data as a list
-            serializer = LearningDataSerializer(data={'user': user.id, 'data': [data]})
+            # If not found, create a new instance with the data as a dictionary
+            serializer = LearningDataSerializer(data={'user': user.id, 'data': {}})
             if serializer.is_valid():
                 serializer.save()
                 return JsonResponse(serializer.data, status=201)
             else:
                 return JsonResponse(serializer.errors, status=400)
-
 
 
 @csrf_exempt

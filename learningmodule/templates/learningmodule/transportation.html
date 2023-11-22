@@ -81,7 +81,7 @@
       position: absolute;
       right: 20px; /* Adjust the right position as needed */
       border-radius: 10px;
-      background-color: rgba(49, 169, 221, 0.86);
+      background-color: rgba(137, 232, 69, 0.86);
     }
 
     .back-btn {
@@ -98,11 +98,6 @@
   <button class="back-btn">Back</button>
 </a>
 <hr />
-
-<a href="{% url 'scenariobased' %}">
-  <button class="done-btn">Done</button>
-</a>
-
 
 {% for transportations in transportations %}
 <div class="container">
@@ -137,4 +132,40 @@
     </div>
   </div>
 </div>
-{% endfor %} {% endblock content %}
+{% endfor %}
+
+<a href="#">
+  <button class="done-btn">Done</button>
+</a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $(".done-btn").click(function () {
+      var pharmacyData = {
+        endpoint_type: "dialog",
+        dialog_type: "transportation",
+        value: true,
+      };
+
+      $.ajax({
+        url: "/api/learning-data/create/",
+        method: "POST",
+        data: JSON.stringify(pharmacyData),
+        contentType: "application/json",
+        success: function (response) {
+          console.log("Data sent successfully");
+          var base_url = window.location.origin;
+          window.location.href = base_url + "/scenariobased"
+        },
+        error: function (xhr, status, error) {
+          console.error("Error sending data", status, error);
+        },
+      });
+    });
+  });
+</script>
+
+{% endblock content %}

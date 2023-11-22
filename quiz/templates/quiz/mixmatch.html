@@ -402,40 +402,43 @@
       });
     }
 
-    // Fetch the data from the API endpoint
     fetch("/api/learning-data/")
       .then((response) => response.json())
-      .then((dataFromAPI) => {
-        // Flattening the array of arrays into a single array
-        const flatData = dataFromAPI.flat();
+      .then((responseData) => {
+        // Check if the response data contains the "mixmatch" array
+        if (responseData.length > 0 && responseData[0].mixmatch) {
+          const mixmatchData = responseData[0].mixmatch;
 
-        // Extracting terms and definitions into separate arrays
-        const terms = flatData.map((item, index) => ({
-          index: index,
-          text: item.term,
-        }));
+          // Extracting terms and definitions into separate arrays
+          const terms = mixmatchData.map((item, index) => ({
+            index: index,
+            text: item.term,
+          }));
 
-        const definitions = flatData.map((item, index) => ({
-          index: index,
-          text: item.definition,
-        }));
+          const definitions = mixmatchData.map((item, index) => ({
+            index: index,
+            text: item.definition,
+          }));
 
-        // Assuming each term matches with the definition at the same index
-        const pairs = terms.reduce((acc, term) => {
-          acc[term.index] = term.index; // This assumes that the term's index matches the definition's index
-          return acc;
-        }, {});
+          // Assuming each term matches with the definition at the same index
+          const pairs = terms.reduce((acc, term) => {
+            acc[term.index] = term.index; // This assumes that the term's index matches the definition's index
+            return acc;
+          }, {});
 
-        var data = {
-          terms: terms,
-          definitions: definitions,
-          pairs: pairs,
-        };
+          var data = {
+            terms: terms,
+            definitions: definitions,
+            pairs: pairs,
+          };
 
-        console.log(data);
+          console.log(data);
 
-        // After data is initialized, setup the game handlers.
-        gameHandlers(data);
+          // After data is initialized, setup the game handlers.
+          gameHandlers(data);
+        } else {
+          console.error("Invalid response format");
+        }
       })
       .catch((error) => console.error("Error fetching data:", error));
   };

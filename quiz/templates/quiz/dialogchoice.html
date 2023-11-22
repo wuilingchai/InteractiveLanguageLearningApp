@@ -3,7 +3,7 @@
 <head>
   <style>
     @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-    
+
     .done-btn {
       position: absolute;
       right: 20px; /* Adjust the right position as needed */
@@ -90,9 +90,9 @@
     }
 
     .incoming .bubble {
-      background: #ccebee;    }
+      background: #ccebee;
+    }
     /* ---------------------------------- */
-
 
     .mcq .mcq-answer {
       position: relative;
@@ -110,7 +110,6 @@
       padding-right: 120px;
       margin: 10px; /* Add margin to create spacing between MCQ items */
       width: 100%; /* Each item takes the full width of its cell */
-
     }
 
     .mcq .mcq-answer p {
@@ -132,8 +131,6 @@
       display: inline-flex;
       margin: 1em;
       z-index: 10;
-  
-      
     }
 
     .mcq .feedback {
@@ -149,13 +146,11 @@
       opacity: 1;
       visibility: hidden;
       border-radius: 10px;
-
     }
 
     .mcq .correct .feedback {
       background-color: #3c763d;
       border-radius: 10px;
-
     }
 
     .mcq input {
@@ -173,26 +168,22 @@
     .mcq input:hover ~ .highlight {
       background-color: #ccc;
       border-radius: 10px;
-
     }
 
     .mcq input:checked ~ .highlight {
       background-color: #f2dede;
       border-radius: 10px;
-
     }
 
     .mcq .correct input:checked ~ .highlight {
       background-color: #dff0d8;
       border-radius: 10px;
-
     }
 
     .mcq input:checked ~ .circle {
       background-color: #ebccd1;
       border-color: #a94442;
       border-radius: 10px;
-
     }
 
     .mcq .correct input:checked ~ .circle {
@@ -210,344 +201,335 @@
     }
 
     /* Add spacing between dialogs */
-.pharmacy,
-.restaurant,
-.airport,
-.directions,
-.teatime,
-.transportation {
-  margin-bottom: 400px; /* Adjust the margin as needed */
-}
+    .pharmacy,
+    .restaurant,
+    .airport,
+    .directions,
+    .teatime,
+    .transportation {
+      margin-bottom: 400px; /* Adjust the margin as needed */
+      display: none;
+    }
 
-/* Add spacing between the multiple-choice question sections */
-.mcq-grid {
-  margin-top: 20px; /* Adjust the margin as needed */
-}
-
-
- 
+    /* Add spacing between the multiple-choice question sections */
+    .mcq-grid {
+      margin-top: 20px; /* Adjust the margin as needed */
+    }
   </style>
 </head>
 
 <h1>Multiple choice dialog quiz</h1>
-<a href="{% url 'mixmatch' %}">
-  <button class="back-btn">Back</button></a>
+<a href="{% url 'mixmatch' %}"> <button class="back-btn">Back</button></a>
 <hr />
 
 <a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
 
-
 <div class="pharmacy">
   <h1>Pharmacy Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            //have to import the data from pharmacy dialog
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
-<br>
+<br />
 <div class="restaurant">
   <h1>Restaurant Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 <div class="airport">
   <h1>Airport Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 <div class="directions">
   <h1>Directions Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 <div class="teatime">
   <h1>TeaTime Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 <div class="transportation">
   <h1>Transportation Dialog</h1>
-<hr />
+  <hr />
   <div class="container">
-  <div class="chatbox">
-    <div class="top-bar">
-      <div class="name">Pharmacy</div>
-    </div>
-    <div class="middle">
-      <div class="pharmacy">
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer1 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer2 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer3 }}</div>
-        </div>
-        <div class="incoming">
-          <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
-        </div>
-        <div class="outgoing">
-          <div class="bubble">{{ pharmacy.customer4 }}</div>
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="name">Pharmacy</div>
+      </div>
+      <div class="middle">
+        <div class="pharmacy">
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer1 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer2 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer3 }}</div>
+          </div>
+          <div class="incoming">
+            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+          </div>
+          <div class="outgoing">
+            <div class="bubble">{{ pharmacy.customer4 }}</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div id="mcq-section" class="mcq-grid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="mcq-section" class="mcq-grid"></div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -564,95 +546,109 @@
   console.log("Base URL:", baseURL);
 
   fetch(`${protocol}//${host}/quiz/api/choices/`)
-      .then(response => response.json())
-      .then(data => {
-          const mcqSection = document.getElementById('mcq-section');
-          console.log(data)
-          data.forEach(question => {
-              let questionDiv = document.createElement('div');
-              questionDiv.classList.add('mcq');
+    .then((response) => response.json())
+    .then((data) => {
+      const mcqSection = document.getElementById("mcq-section");
+      console.log(data);
+      data.forEach((question) => {
+        let questionDiv = document.createElement("div");
+        questionDiv.classList.add("mcq");
 
-              let questionTitle = document.createElement('h4');
-              questionTitle.textContent = "Multiple Choice Question";
-              questionDiv.appendChild(questionTitle);
+        let questionTitle = document.createElement("h4");
+        questionTitle.textContent = "Multiple Choice Question";
+        questionDiv.appendChild(questionTitle);
 
-              let questionText = document.createElement('p');
-              questionText.textContent = question.question;
-              questionDiv.appendChild(questionText);
+        let questionText = document.createElement("p");
+        questionText.textContent = question.question;
+        questionDiv.appendChild(questionText);
 
-              const choices = [
-                  question.choice1,
-                  question.choice2,
-                  question.choice3,
-                  question.choice4,
-              ];
-              choices.forEach((choice, index) => {
-                  let choiceLabel = document.createElement('label');
-                  choiceLabel.classList.add('mcq-answer');
-                  if (choice === question.answer) {
-                      choiceLabel.classList.add('correct');
-                  }
+        const choices = [
+          question.choice1,
+          question.choice2,
+          question.choice3,
+          question.choice4,
+        ];
+        choices.forEach((choice, index) => {
+          let choiceLabel = document.createElement("label");
+          choiceLabel.classList.add("mcq-answer");
+          if (choice === question.answer) {
+            choiceLabel.classList.add("correct");
+          }
 
-                  let choiceInput = document.createElement('input');
-                  choiceInput.setAttribute('type', 'radio');
-                  choiceInput.setAttribute('name', `question${question.id}`);
-                  choiceInput.setAttribute('id', `answer${index}`);
-                  choiceLabel.appendChild(choiceInput);
+          let choiceInput = document.createElement("input");
+          choiceInput.setAttribute("type", "radio");
+          choiceInput.setAttribute("name", `question${question.id}`);
+          choiceInput.setAttribute("id", `answer${index}`);
+          choiceLabel.appendChild(choiceInput);
 
-                  let highlightDiv = document.createElement('div');
-                  highlightDiv.classList.add('highlight');
-                  choiceLabel.appendChild(highlightDiv);
+          let highlightDiv = document.createElement("div");
+          highlightDiv.classList.add("highlight");
+          choiceLabel.appendChild(highlightDiv);
 
-                  let circleDiv = document.createElement('div');
-                  circleDiv.classList.add('circle');
-                  choiceLabel.appendChild(circleDiv);
+          let circleDiv = document.createElement("div");
+          circleDiv.classList.add("circle");
+          choiceLabel.appendChild(circleDiv);
 
-                  let choiceText = document.createElement('p');
-                  choiceText.textContent = choice;
-                  choiceLabel.appendChild(choiceText);
+          let choiceText = document.createElement("p");
+          choiceText.textContent = choice;
+          choiceLabel.appendChild(choiceText);
 
-                  let feedbackSpan = document.createElement('span');
-                  feedbackSpan.classList.add('feedback');
-                  feedbackSpan.textContent = choice === question.answer ? "Correct" : "Incorrect";
-                  choiceLabel.appendChild(feedbackSpan);
+          let feedbackSpan = document.createElement("span");
+          feedbackSpan.classList.add("feedback");
+          feedbackSpan.textContent =
+            choice === question.answer ? "Correct" : "Incorrect";
+          choiceLabel.appendChild(feedbackSpan);
 
-                  questionDiv.appendChild(choiceLabel);
-              });
+          questionDiv.appendChild(choiceLabel);
+        });
 
-              mcqSection.appendChild(questionDiv);
-          });
+        mcqSection.appendChild(questionDiv);
       });
-
-
-      document.getElementById('mcq-section').addEventListener('change', (event) => {
-        if (event.target.tagName === 'INPUT' && event.target.type === 'radio') {
-            const questionId = parseInt(event.target.name.replace('question', ''));
-            const selectedAnswer = event.target.nextSibling.nextSibling.nextSibling.textContent.trim();
-
-            fetch(`${protocol}//${host}/quiz/api/validate-answer/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}' // for CSRF protection
-                },
-                body: JSON.stringify({
-                    id: questionId,
-                    answer: selectedAnswer
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'Correct') {
-                    // Handle correct answer
-                    alert('Correct!');
-                } else {
-                    // Handle incorrect answer
-                    alert('Incorrect. Try again.');
-                }
-            });
-        }
     });
-</script>
 
+  fetch(`${protocol}//${host}/api/learning-data/`)
+    .then((response) => response.json())
+    .then((data) => {
+      // Assuming 'data' is an array of objects with a 'dialog' key in each object
+      data[0].dialog.forEach((dialogObject) => {
+        const dialogType = dialogObject.dialog_type; // Replace 'dialog_type' with the actual key in your data
+        const elem = document.getElementsByClassName(dialogType)[0];
+        if (elem) {
+          console.log(elem);
+          elem.style.display = "block";
+        }
+      });
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+  document.getElementById("mcq-section").addEventListener("change", (event) => {
+    if (event.target.tagName === "INPUT" && event.target.type === "radio") {
+      const questionId = parseInt(event.target.name.replace("question", ""));
+      const selectedAnswer =
+        event.target.nextSibling.nextSibling.nextSibling.textContent.trim();
+
+      fetch(`${protocol}//${host}/quiz/api/validate-answer/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": "{{ csrf_token }}", // for CSRF protection
+        },
+        body: JSON.stringify({
+          id: questionId,
+          answer: selectedAnswer,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.result === "Correct") {
+            // Handle correct answer
+            alert("Correct!");
+          } else {
+            // Handle incorrect answer
+            alert("Incorrect. Try again.");
+          }
+        });
+    }
+  });
+</script>
 
 {% endblock content %}
