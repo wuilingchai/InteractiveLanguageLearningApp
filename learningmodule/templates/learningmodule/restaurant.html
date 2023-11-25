@@ -22,7 +22,7 @@
 
     .top-bar {
       width: 100%;
-      height: 100%;
+      height: 115%;
       background: #325499;
       border-radius: 10px 10px 10px 10px;
     }
@@ -44,7 +44,7 @@
       width: 100%;
       opacity: 0.85;
       top: 60px;
-      height: 80%; /* Increase the height for a taller chat content */
+      height: 100%; /* Increase the height for a taller chat content */
     }
 
     .incoming,
@@ -106,7 +106,7 @@
       <div class="name">Restaurant</div>
     </div>
     <div class="middle">
-      <div class="pharmacy">
+      <div class="restaurant-dialog">
         <div class="incoming">
           <div class="bubble">{{ restaurant.waiter }}</div>
         </div>
@@ -114,19 +114,28 @@
           <div class="bubble">{{ restaurant.customer }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ restaurant.waiter }}</div>
+          <div class="bubble">{{ restaurant.waiter1 }}</div>
         </div>
         <div class="outgoing">
-          <div class="bubble">{{ restaurant.waiter }}</div>
+          <div class="bubble">{{ restaurant.customer1 }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ restaurant.waiter }}</div>
+          <div class="bubble">{{ restaurant.waiter2 }}</div>
         </div>
         <div class="outgoing">
-          <div class="bubble">{{ restaurant.waiter }}</div>
+          <div class="bubble">{{ restaurant.customer2 }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ restaurant.waiter }}</div>
+          <div class="bubble">{{ restaurant.waiter3 }}</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">{{ restaurant.customer3 }}</div>
+        </div>
+        <div class="incoming">
+          <div class="bubble">{{ restaurant.waiter4 }}</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">{{ restaurant.customer4 }}</div>
         </div>
       </div>
     </div>
