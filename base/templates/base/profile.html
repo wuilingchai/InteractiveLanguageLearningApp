@@ -8,7 +8,9 @@
         justify-content: center;
         align-items: center;
         padding: 20px;
-        height:500px
+        height:500px;
+        width:500px;
+        margin-left: 750px;
     }
 
     .profile-details {
@@ -20,27 +22,30 @@
         text-align: center;
     }
 
-    h1 {
-        font-size: 24px;
+    .profile-title {
+        font-size: 30px;
     }
 
-    h3 {
+    .greet-user {
         font-size: 16px;
-        margin: 10px 0;
+        margin: 15px 0;
     }
 
-    .save-button {
+    .edit-btn {
         background-color: #007bff; /* Blue button background */
         color: #fff; /* White text color */
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        text-decoration: none;
+        position: relative;
     }
 
-    .save-button:hover {
+    .edit-btn:hover {
         background-color: #0056b3; /* Darker blue on hover */
     }
+
 </style>
 
 
@@ -48,17 +53,17 @@
 <div class="profile-container"> 
     
     <div class="profile-details">
-       <h1>User Profile</h1>
-        <h3>Hello {{user.username}}</h3>
+       <h1 class="profile-title">User Profile</h1>
+        <h3 class="greet-user">Hello {{user.username}}</h3>
     
         <hr>
         <div>
-            <p>Profile Picture</p>
+            <!-- <p>Profile Picture</p> -->
             <p>Username: {{user.username}}</p>
             <p>Email Address: {{user.email}}</p>
         </div>
         {% if request.user == user %}
-        <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+        <a href="{% url 'update-user' %}" class="edit-btn">Edit Profile</a>
         {% endif %}
     </div>
     <div>

@@ -341,38 +341,40 @@
         <div class="name">Pharmacy</div>
       </div>
       <div class="middle">
-        <div class="aiport-dialog">
+        {% for airport in airports %} 
+        <div class="airport-dialog">
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+            <div class="bubble">{{ airport.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer }}</div>
+            <div class="bubble">{{ airport.customer }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+            <div class="bubble">{{ airport.waiter1 }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer1 }}</div>
+            <div class="bubble">{{ airport.customer1 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+            <div class="bubble">{{ airport.waiter2 }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer2 }}</div>
+            <div class="bubble">{{ airport.customer2 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+            <div class="bubble">{{ airport.waiter3 }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer3 }}</div>
+            <div class="bubble">{{ airport.customer3 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+            <div class="bubble">{{ airport.waiter4 }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer4 }}</div>
+            <div class="bubble">{{ airport.customer4 }}</div>
           </div>
         </div>
+        {% endfor %}
       </div>
 
       <div class="row">

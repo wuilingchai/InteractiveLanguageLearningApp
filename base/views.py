@@ -68,7 +68,7 @@ def updateUser(request):
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('profile', pk=user.id)
+            return redirect('user-profile', pk=user.id)
 
     return render(request, 'base/update-user.html', {'form': form})
 
@@ -81,9 +81,6 @@ def sidemenu(request):
 def home(request):
     return render(request, 'base/home.html')
 
-@login_required(login_url='login')
-def milestone(request):
-    return render(request, 'base/milestone.html')
 
 @login_required(login_url='login')
 def settingsapp(request):
