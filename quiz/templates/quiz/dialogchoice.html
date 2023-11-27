@@ -226,7 +226,7 @@
 <hr />
 
 
-<div class="pharmacy">
+<div class="pharmacy" data-dialog-type="pharmacy">
   <h1>Pharmacy Dialog</h1>
   <hr />
   <div class="container">
@@ -280,7 +280,7 @@
   {% endfor %}
 </div>
 <br />
-<div class="restaurant">
+<div class="restaurant" data-dialog-type="restaurant">
   <h1>Restaurant Dialog</h1>
   <hr />
   <div class="container">
@@ -555,6 +555,11 @@
 
   console.log("Base URL:", baseURL);
 
+  // // Fetch questions and choices based on dialog type
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   // Get the dialog type from the HTML element
+  //   const dialogType = document.querySelector(".pharmacy").dataset.dialogType; ?dialog_type=${dialogType}
+
   fetch(`${protocol}//${host}/quiz/api/choices/`)
     .then((response) => response.json())
     .then((data) => {
@@ -615,6 +620,41 @@
         mcqSection.appendChild(questionDiv);
       });
     });
+
+  //   // Add event listener for handling user responses
+  // mcqSection.addEventListener("change", (event) => {
+  //         if (event.target.tagName === "INPUT" && event.target.type === "radio") {
+  //           // Your logic for handling user responses goes here
+  //           const questionId = parseInt(event.target.name.replace("question", ""));
+  //           const selectedAnswer = event.target.nextSibling.nextSibling.nextSibling.textContent.trim();
+
+  //           fetch(`${protocol}//${host}/quiz/api/validate-answer/`, {
+  //             method: "POST",
+  //             headers: {
+  //               "Content-Type": "application/json",
+  //               "X-CSRFToken": "{{ csrf_token }}", // for CSRF protection
+  //             },
+  //             body: JSON.stringify({
+  //               id: questionId,
+  //               answer: selectedAnswer,
+  //             }),
+  //           })
+  //             .then((response) => response.json())
+  //             .then((data) => {
+  //               if (data.result === "Correct") {
+  //                 // Handle correct answer
+  //                 alert("Correct!");
+  //               } else {
+  //                 // Handle incorrect answer
+  //                 alert("Incorrect. Try again.");
+  //               }
+  //             });
+  //         }
+  //       });
+    
+  // });
+
+  
 
   fetch(`${protocol}//${host}/api/learning-data/`)
     .then((response) => response.json())
