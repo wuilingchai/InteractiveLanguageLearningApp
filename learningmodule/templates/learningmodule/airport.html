@@ -22,7 +22,7 @@
 
     .top-bar {
       width: 100%;
-      height: 100%;
+      height: 115%;
       background: #325499;
       border-radius: 10px 10px 10px 10px;
     }
@@ -44,7 +44,7 @@
       width: 100%;
       opacity: 0.85;
       top: 60px;
-      height: 80%; /* Increase the height for a taller chat content */
+      height: 100%; /* Increase the height for a taller chat content */
     }
 
     .incoming,
@@ -85,11 +85,13 @@
     }
 
     .back-btn {
-      /* position: absolute; */
-      left: 50px; /* Adjust the right position as needed */
-      border-radius: 10px;
-      background-color: rgba(49, 169, 221, 0.86);
-    }
+  position: absolute;
+  right: 50px; /* Adjust the right position as needed */
+  top: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(133, 201, 231, 0.86);
+}
   </style>
 </head>
 
@@ -99,9 +101,6 @@
 </a>
 <hr />
 
-<a href="{% url 'scenariobased' %}">
-  <button class="done-btn">Done</button>
-</a>
 
 
 {% for airport in airports %}
@@ -119,19 +118,28 @@
           <div class="bubble">{{ airport.customer }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ airport.customer }}</div>
+          <div class="bubble">{{ airport.stewardess1 }}</div>
         </div>
         <div class="outgoing">
-          <div class="bubble">{{ airport.customer }}</div>
+          <div class="bubble">{{ airport.customer1 }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ airport.customer }}</div>
+          <div class="bubble">{{ airport.stewardess2 }}</div>
         </div>
         <div class="outgoing">
-          <div class="bubble">{{ airport.customer }}</div>
+          <div class="bubble">{{ airport.customer2 }}</div>
         </div>
         <div class="incoming">
-          <div class="bubble">{{ airport.customer }}</div>
+          <div class="bubble">{{ airport.stewardess3 }}</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">{{ airport.customer3 }}</div>
+        </div>
+        <div class="incoming">
+          <div class="bubble">{{ airport.stewardess4 }}</div>
+        </div>
+        <div class="outgoing">
+          <div class="bubble">{{ airport.customer4 }}</div>
         </div>
       </div>
     </div>

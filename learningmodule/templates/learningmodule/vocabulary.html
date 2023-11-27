@@ -1,36 +1,13 @@
-{% extends 'main.html' %} {% load static %} {% block content %}
-<h1>Vocabulary Flashcard</h1>
-<a href="{% url 'learningmodule' %}">
-  <button class="back-btn">Back</button>
-</a>
-<div
-  style="
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    font-family: 'Times New Roman', Times, serif;
-  "
->
-  <p>
-    Expand your lexicon and unlock a world of possibilities. Each vocabulary
-    exercise brings you one step closer to mastering the language and expressing
-    yourself with confidence.
-  </p>
-</div>
-<head>
-  <!-- ... (other head content) ... -->
-  <!-- Include Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
+{% extends 'main.html' %} {% load static %} {% block content %}  
   <style>
     .back-btn {
-      /* position: absolute; */
-      left: 50px; /* Adjust the right position as needed */
-      border-radius: 10px;
-      background-color: rgba(49, 169, 221, 0.86);
-    }
+  position: absolute;
+  right: 50px; /* Adjust the right position as needed */
+  top: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(133, 201, 231, 0.86);
+}
 
     .card,
     .card-body {
@@ -98,6 +75,34 @@
       flex-wrap: wrap;
     }
   </style>
+
+<h1>Vocabulary Flashcard</h1>
+<a href="{% url 'learningmodule' %}">
+  <button class="back-btn">Back</button>
+</a>
+<br>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    font-family: 'Times New Roman', Times, serif;
+  "
+>
+  <p>
+    Expand your lexicon and unlock a world of possibilities. Each vocabulary
+    exercise brings you one step closer to mastering the language and expressing
+    yourself with confidence.
+  </p>
+</div>
+<head>
+  <!-- ... (other head content) ... -->
+  <!-- Include Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+
 </head>
 <body>
   <!-- <form method="get">

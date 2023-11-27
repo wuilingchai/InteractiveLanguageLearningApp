@@ -14,11 +14,13 @@
     }
 
     .back-btn {
-      /* position: absolute; */
-      left: 50px; /* Adjust the right position as needed */
-      border-radius: 10px;
-      background-color: rgba(49, 169, 221, 0.86);
-    }
+  position: absolute;
+  right: 50px; /* Adjust the right position as needed */
+  top: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(133, 201, 231, 0.86);
+}
 
     .container {
       position: relative;
@@ -223,7 +225,6 @@
 <a href="{% url 'mixmatch' %}"> <button class="back-btn">Back</button></a>
 <hr />
 
-<a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
 
 <div class="pharmacy">
   <h1>Pharmacy Dialog</h1>
@@ -537,7 +538,10 @@
       </div>
     </div>
   </div>
+
 </div>
+
+<a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
 
 <script>
   // Get the protocol (e.g., "http:" or "https:")

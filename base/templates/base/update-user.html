@@ -16,7 +16,10 @@
         align-items: center;
         padding: 20px;
         height:500px;
-        background-color:aqua;
+        background-color: rgba(136, 190, 212, 0.49);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
     }
 
     .layout__boxTitle{
@@ -27,6 +30,24 @@
     .form__group{
       margin: 10px;
     }
+
+    .cancel-btn, .update-btn{
+      background-color: #007bff; /* Blue button background */
+        color: #fff; /* White text color */
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        position: relative;
+        bottom: 0;
+        height: 40px;
+    }
+
+    .cancel-btn:hover, .update-btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
 
 </style>
           <a href="{% url 'profile' %}"> <button class="back-btn">Back</button></a>
@@ -51,8 +72,8 @@
           {% endfor %}
 
           <div class="form__action">
-            <a class="btn btn--dark" href="{% url 'profile' %}">Cancel</a>
-            <button class="btn btn--main" type="submit">Update</button>
+            <button class="cancel-btn" href="{% url 'profile' %}">Cancel</button>
+            <button class="update-btn" type="submit">Update</button>
           </div>
         </form>
       </div>

@@ -1,43 +1,14 @@
 {% extends 'main.html' %} {% load static %} {% block content %}
-<h1>Learning Module Template</h1>
-<a href="{% url 'home' %} ">
-  <button class="back-btn">Back</button>
-</a>
-
-<hr />
-
-<div class="flex-container">
-  <div class="flex-item">
-    <img
-      src="{% static 'vocabularyModule.png' %}"
-      class="logo-image"
-      alt="Vocabulary"
-    />
-    <a href="{% url 'vocabulary' %}" style="text-decoration: none; color: black"
-      ><h3>Vocabulary</h3></a
-    >
-  </div>
-  <div class="flex-item">
-    <img
-      src="{% static 'scenarioBasedModule.png' %}"
-      class="logo-image"
-      alt="Scenario Based"
-    />
-    <a
-      href="{% url 'scenariobased' %}"
-      style="text-decoration: none; color: black"
-      ><h3>Scenario Based</h3></a
-    >
-  </div>
-</div>
-
 <style>
-  .back-btn {
-    /* position: absolute; */
-    left: 50px; /* Adjust the right position as needed */
-    border-radius: 10px;
-    background-color: rgba(49, 169, 221, 0.86);
-  }
+
+.back-btn {
+  position: absolute;
+  right: 50px; /* Adjust the right position as needed */
+  top: 150px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(133, 201, 231, 0.86);
+}
 
   .flex-container {
     display: flex;
@@ -66,4 +37,30 @@
     }
   }
 </style>
+
+<h1 >Learning Modules</h1>
+<a href="{% url 'home' %} ">
+  <button class="back-btn">Back</button>
+</a>
+
+<div class="flex-container">
+  <div class="flex-item">
+     <a href="{% url 'vocabulary' %}" style="text-decoration: none; color: black">
+    <img
+      src="{% static 'vocabularyModule.png' %}"
+      class="logo-image"
+      alt="Vocabulary"
+    />
+   <h3>Vocabulary</h3></a
+    >
+  </div>
+  <div class="flex-item">
+     <a href="{% url 'scenariobased' %}" style="text-decoration: none; color: black">
+    <img src="{% static 'scenarioBasedModule.png' %}" class="logo-image" alt="Scenario Based"/>
+   <h3>Scenario Based</h3></a
+    >
+  </div>
+</div>
+
+
 {% endblock content %}
