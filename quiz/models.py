@@ -11,6 +11,7 @@ class Word(models.Model):
     
 
 class Choices(models.Model):
+    div_id = models.CharField(max_length=256, null=True, blank=True)
     question = models.TextField(max_length=200)
     answer = models.CharField(max_length=50)
     choice1 = models.CharField(max_length=50, null=True, blank=True)

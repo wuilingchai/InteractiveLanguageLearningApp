@@ -14,13 +14,13 @@
     }
 
     .back-btn {
-  position: absolute;
-  right: 50px; /* Adjust the right position as needed */
-  top: 150px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(133, 201, 231, 0.86);
-}
+      position: absolute;
+      right: 50px; /* Adjust the right position as needed */
+      top: 150px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(133, 201, 231, 0.86);
+    }
 
     .container {
       position: relative;
@@ -225,7 +225,6 @@
 <a href="{% url 'mixmatch' %}"> <button class="back-btn">Back</button></a>
 <hr />
 
-
 <div class="pharmacy" data-dialog-type="pharmacy">
   <h1>Pharmacy Dialog</h1>
   <hr />
@@ -272,7 +271,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-pharmacy" class="mcq-grid"></div>
         </div>
       </div>
     </div>
@@ -289,7 +288,7 @@
         <div class="name">Restaurant</div>
       </div>
       <div class="middle">
-        {% for restaurant in restaurants %} 
+        {% for restaurant in restaurants %}
         <div class="restaurant-dialog">
           <div class="incoming">
             <div class="bubble">{{ restaurant.waiter }}</div>
@@ -327,7 +326,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-restaurant" class="mcq-grid"></div>
         </div>
       </div>
     </div>
@@ -342,7 +341,7 @@
         <div class="name">Pharmacy</div>
       </div>
       <div class="middle">
-        {% for airport in airports %} 
+        {% for airport in airports %}
         <div class="airport-dialog">
           <div class="incoming">
             <div class="bubble">{{ airport.waiter }}</div>
@@ -380,7 +379,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-airport" class="mcq-grid"></div>
         </div>
       </div>
     </div>
@@ -431,7 +430,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-directions" class="mcq-grid"></div>
         </div>
       </div>
     </div>
@@ -482,7 +481,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-teatime" class="mcq-grid"></div>
         </div>
       </div>
     </div>
@@ -533,12 +532,11 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section" class="mcq-grid"></div>
+          <div id="mcq-section-transportation" class="mcq-grid"></div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
 <a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
@@ -559,67 +557,79 @@
   // document.addEventListener("DOMContentLoaded", () => {
   //   // Get the dialog type from the HTML element
   //   const dialogType = document.querySelector(".pharmacy").dataset.dialogType; ?dialog_type=${dialogType}
-
-  fetch(`${protocol}//${host}/quiz/api/choices/`)
-    .then((response) => response.json())
-    .then((data) => {
-      const mcqSection = document.getElementById("mcq-section");
-      console.log(data);
-      data.forEach((question) => {
-        let questionDiv = document.createElement("div");
-        questionDiv.classList.add("mcq");
-
-        let questionTitle = document.createElement("h4");
-        questionTitle.textContent = "Multiple Choice Question";
-        questionDiv.appendChild(questionTitle);
-
-        let questionText = document.createElement("p");
-        questionText.textContent = question.question;
-        questionDiv.appendChild(questionText);
-
-        const choices = [
-          question.choice1,
-          question.choice2,
-          question.choice3,
-          question.choice4,
-        ];
-        choices.forEach((choice, index) => {
-          let choiceLabel = document.createElement("label");
-          choiceLabel.classList.add("mcq-answer");
-          if (choice === question.answer) {
-            choiceLabel.classList.add("correct");
-          }
-
-          let choiceInput = document.createElement("input");
-          choiceInput.setAttribute("type", "radio");
-          choiceInput.setAttribute("name", `question${question.id}`);
-          choiceInput.setAttribute("id", `answer${index}`);
-          choiceLabel.appendChild(choiceInput);
-
-          let highlightDiv = document.createElement("div");
-          highlightDiv.classList.add("highlight");
-          choiceLabel.appendChild(highlightDiv);
-
-          let circleDiv = document.createElement("div");
-          circleDiv.classList.add("circle");
-          choiceLabel.appendChild(circleDiv);
-
-          let choiceText = document.createElement("p");
-          choiceText.textContent = choice;
-          choiceLabel.appendChild(choiceText);
-
-          let feedbackSpan = document.createElement("span");
-          feedbackSpan.classList.add("feedback");
-          feedbackSpan.textContent =
-            choice === question.answer ? "Correct" : "Incorrect";
-          choiceLabel.appendChild(feedbackSpan);
-
-          questionDiv.appendChild(choiceLabel);
-        });
-
-        mcqSection.appendChild(questionDiv);
+  async function getChoices() {
+    await fetch(`${protocol}//${host}/quiz/api/choices/`)
+      .then((response) => response.json())
+      .then((data) => {
+        for (var i = 0; i < data.length; i++){
+          console.log(data[i])
+          const mcqSection = document.getElementById(data[i].div_id);
+          console.log(mcqSection.id);
+          console.log(data);
+          data.forEach((question) => {
+            if (mcqSection.id == question.div_id){
+              let questionDiv = document.createElement("div");
+              questionDiv.classList.add("mcq");
+    
+              let questionTitle = document.createElement("h4");
+              questionTitle.textContent = "Multiple Choice Question";
+              questionDiv.appendChild(questionTitle);
+    
+              let questionText = document.createElement("p");
+              questionText.textContent = question.question;
+              questionDiv.appendChild(questionText);
+    
+              const choices = [
+                question.choice1,
+                question.choice2,
+                question.choice3,
+                question.choice4,
+              ];
+              choices.forEach((choice, index) => {
+                let choiceLabel = document.createElement("label");
+                choiceLabel.classList.add("mcq-answer");
+                if (choice === question.answer) {
+                  choiceLabel.classList.add("correct");
+                }
+    
+                let choiceInput = document.createElement("input");
+                choiceInput.setAttribute("type", "radio");
+                choiceInput.setAttribute("name", `question${question.id}`);
+                choiceInput.setAttribute("id", `answer${index}`);
+                choiceLabel.appendChild(choiceInput);
+    
+                let highlightDiv = document.createElement("div");
+                highlightDiv.classList.add("highlight");
+                choiceLabel.appendChild(highlightDiv);
+    
+                let circleDiv = document.createElement("div");
+                circleDiv.classList.add("circle");
+                choiceLabel.appendChild(circleDiv);
+    
+                let choiceText = document.createElement("p");
+                choiceText.textContent = choice;
+                choiceLabel.appendChild(choiceText);
+    
+                let feedbackSpan = document.createElement("span");
+                feedbackSpan.classList.add("feedback");
+                feedbackSpan.textContent =
+                  choice === question.answer ? "Correct" : "Incorrect";
+                choiceLabel.appendChild(feedbackSpan);
+    
+                questionDiv.appendChild(choiceLabel);
+              });
+    
+              mcqSection.appendChild(questionDiv);
+            }
+          });
+        }
       });
-    });
+
+  }
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    getChoices()
+  });
 
   //   // Add event listener for handling user responses
   // mcqSection.addEventListener("change", (event) => {
@@ -651,10 +661,8 @@
   //             });
   //         }
   //       });
-    
-  // });
 
-  
+  // });
 
   fetch(`${protocol}//${host}/api/learning-data/`)
     .then((response) => response.json())
