@@ -27,6 +27,6 @@ def dialogchoice(request):
     transportation = Transportation.objects.all()
     teatime = Teatime.objects.all()
     direction = Direction.objects.all()
-    context = {'pharmacys':pharmacys, 'restaurants': restaurants, 'airport': airport, 'transporation': transportation, 'teatime':teatime, 'direction': direction}
+    context = {'pharmacys':pharmacys, 'restaurants': restaurants, 'airport': airport, 'transportation': transportation, 'teatime':teatime, 'direction': direction}
 
     return render(request, 'quiz/dialogchoice.html', context)

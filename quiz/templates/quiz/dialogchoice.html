@@ -7,10 +7,10 @@
     .done-btn {
       position: absolute;
       right: 20px; /* Adjust the right position as needed */
-      bottom: -100%;
       border-radius: 10px;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px; */
       background-color: rgba(137, 232, 69, 0.86);
+      margin-top: auto;
     }
 
     .back-btn {
@@ -270,6 +270,7 @@
             <div class="bubble">_______?________</div>
           </div>
         </div>
+        {% endfor %}
       </div>
 
       <div class="row">
@@ -279,7 +280,7 @@
       </div>
     </div>
   </div>
-  {% endfor %}
+  
 </div>
 <br />
 <div class="restaurant" data-dialog-type="restaurant">
@@ -344,7 +345,7 @@
         <div class="name">Airport</div>
       </div>
       <div class="middle">
-        {% for airport in airports %}
+        {% for airport in airport %}
         <div class="airport-dialog">
           <div class="incoming">
             <div class="bubble">{{ airport.stewardess }}</div>
@@ -353,25 +354,25 @@
             <div class="bubble">{{ airport.customer }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ airport.stewardess1 }}</div>
+            <div class="bubble">{{ airport.stewardess }}</div>
           </div>
           <div class="outgoing">
             <div class="bubble">{{ airport.customer1 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ airport.stewardess2 }}</div>
+            <div class="bubble">{{ airport.stewardess }}</div>
           </div>
           <div class="outgoing">
             <div class="bubble">{{ airport.customer2 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ airport.stewardess3 }}</div>
+            <div class="bubble">{{ airport.stewardess }}</div>
           </div>
           <div class="outgoing">
             <div class="bubble">{{ airport.customer3 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ airport.stewardess4 }}</div>
+            <div class="bubble">{{ airport.stewardess }}</div>
           </div>
           <div class="outgoing">
             <div class="bubble">{{ airport.customer4 }}</div>
@@ -388,119 +389,7 @@
     </div>
   </div>
 </div>
-<div class="direction" data-dialog-type="direction">
-  <h1>Direction Dialog</h1>
-  <hr />
-  <div class="container">
-    <div class="chatbox">
-      <div class="top-bar">
-        <div class="name">Direction</div>
-      </div>
-      <div class="middle">
-        {% for direction in directions %}
-        <div class="direction-dialog">
-          <div class="incoming">
-            <div class="bubble">{{ direction.traveller }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ direction.traveller }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{  direction.traveller }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ direction.traveller }}</div>
-          </div>
-          <!-- <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer4 }}</div>
-          </div> -->
-          <div class="outgoing">
-            <div class="bubble">_______?________</div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div id="mcq-section-direction" class="mcq-grid"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-</div>
-
-
-<div class="airport" data-dialog-type="airport">
-  <h1>Airport Dialog</h1>
-  <hr />
-  <div class="container">
-    <div class="chatbox">
-      <div class="top-bar">
-        <div class="name">Airport</div>
-      </div>
-      <div class="middle">
-        {% for airport in airports %}
-        <div class="airport-dialog">
-          <div class="incoming">
-            <div class="bubble">{{ airport.waiter }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{ airport.customer }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ airport.waiter1 }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{ airport.customer1 }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ airport.waiter2 }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{ airport.customer2 }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ airport.waiter3 }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{ airport.customer3 }}</div>
-          </div>
-          <div class="incoming">
-            <div class="bubble">{{ airport.waiter4 }}</div>
-          </div>
-          <div class="outgoing">
-            <div class="bubble">{{ airport.customer4 }}</div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <div id="mcq-section-airport" class="mcq-grid"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="directions">
+<div class="directions" data-dialog-type="direction">
   <h1>Directions Dialog</h1>
   <hr />
   <div class="container">
@@ -509,7 +398,7 @@
         <div class="name">Direction</div>
       </div>
       <div class="middle">
-        {% for direction in directions %}
+        {% for direction in direction %}
           <div class="direction-dialog">
             <div class="incoming">
               <div class="bubble">{{ direction.local }}</div>
@@ -547,13 +436,13 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <div id="mcq-section-directions" class="mcq-grid"></div>
+          <div id="mcq-section-direction" class="mcq-grid"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="teatime">
+<div class="teatime" data-dialog-type="teatime">
   <h1>TeaTime Dialog</h1>
   <hr />
   <div class="container">
@@ -562,38 +451,40 @@
         <div class="name">teatime-dialog</div>
       </div>
       <div class="middle">
-        <div class="pharmacy">
+        {% for teatime in teatime %}
+        <div class="teatime-dialog">
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer1 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer2 }}</div>
+            <div class="bubble">{{ teatime.waiter2 }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer3 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer4 }}</div>
+            <div class="bubble">{{ teatime.waiter }}</div>
           </div>
         </div>
+        {% endfor %}
       </div>
 
       <div class="row">
@@ -604,47 +495,50 @@
     </div>
   </div>
 </div>
-<div class="transportation">
+<div class="transportation" data-dialog-type="transportation">
   <h1>Transportation Dialog</h1>
   <hr />
   <div class="container">
     <div class="chatbox">
       <div class="top-bar">
-        <div class="name">transportation-dialog</div>
+        <div class="name">Transportations</div>
       </div>
       <div class="middle">
-        <div class="pharmacy">
+        {% for transportation in transportation %}
+        <div class="transportation-dialog">
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist1 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer1 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist2 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer2 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist3 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer3 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="incoming">
-            <div class="bubble">{{ pharmacy.pharmacist4 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
           <div class="outgoing">
-            <div class="bubble">{{ pharmacy.customer4 }}</div>
+            <div class="bubble">{{ transportation.driver }}</div>
           </div>
         </div>
+        {% endfor %}
+       
       </div>
 
       <div class="row">
@@ -654,7 +548,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> 
 
 <a href="{% url 'quiz' %}"><button class="done-btn">Done</button></a>
 
