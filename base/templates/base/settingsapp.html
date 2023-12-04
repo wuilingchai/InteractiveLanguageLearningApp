@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<a href="{% url 'home' %}"> <button class="back-btn">Back</button></a>
     <div id="settings-container">
         
 
@@ -31,6 +32,15 @@
     </div>
     
     <style>
+
+.back-btn {
+      position: absolute;
+      right: 100px; /* Adjust the right position as needed */
+      top: 170px;
+      border-radius: 10px;
+      border: none;
+      background-color: rgba(133, 201, 231, 0.86);
+    }
         /* CSS for the toggle switches and centering content */
         #settings-container {
             display: flex;
