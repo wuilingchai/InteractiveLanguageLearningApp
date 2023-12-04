@@ -28,6 +28,7 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
+            
             messages.error(request, 'Username OR Password does not exist')
         
     context = {'page': page}
@@ -48,8 +49,12 @@ def registerPage(request):
             user.save()
             login(request, user)
             return redirect('home')
-        else:
-            messages.error(request, 'An error occured during registration')
+        else:# Display form errors in the messages
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
+
+            # messages.error(request, 'An error occured during registration')
 
     return render(request, 'base/login_register.html', {'form':form})
 
@@ -69,6 +74,11 @@ def updateUser(request):
         if form.is_valid():
             form.save()
             return redirect('user-profile', pk=user.id)
+        else:
+            # Display form errors in the messages
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field}: {error}")
 
     return render(request, 'base/update-user.html', {'form': form})
 
