@@ -76,6 +76,13 @@
 {% if page == 'login' %}
 <div class="form-container">
     <h3>Login</h3>
+    {% if errors.user_not_exist %}
+    <p>{{ errors.user_not_exist }}</p>
+  {% endif %}
+
+  {% if errors.invalid_credentials %}
+    <p>{{ errors.invalid_credentials }}</p>
+  {% endif %}
     <form method="POST" action="">
         {% csrf_token %}
 
@@ -98,6 +105,13 @@
 
 <div class="form-container">
     <h3>Register</h3>
+    {% if messages %}
+      <h2 class="messages">
+        {% for message in messages %}
+          <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+      </h2>
+    {% endif %}
     <form method="POST" action="">
         {% csrf_token %}
         <!-- {% for field in form %}

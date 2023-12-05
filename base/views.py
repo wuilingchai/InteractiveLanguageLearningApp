@@ -13,14 +13,16 @@ from .forms import UserForm, MyUserCreationForm
 
 def loginPage(request):
     page = 'login'
+    errors = {}
+
     if request.method == 'POST':
         username = request.POST.get('username').lower()
         password = request.POST.get('password')
 
         try:
             user = User.objects.get(username=username)
-        except:
-            messages.error(request, 'User does not exist')
+        except User.DoesNotExist:
+            errors['user_not_exist'] = 'User does not exist'
 
         user = authenticate(request, username=username, password=password)
 
@@ -28,10 +30,10 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            
-            messages.error(request, 'Username OR Password does not exist')
-        
-    context = {'page': page}
+            errors['invalid_credentials'] = 'Username OR Password does not exist'
+
+    print(errors)
+    context = {'page': page, 'errors': errors}
     return render(request, 'base/login_register.html', context)
 
 def logoutUser(request):
