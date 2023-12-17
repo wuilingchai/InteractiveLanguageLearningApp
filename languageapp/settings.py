@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'slangdictionary.apps.SlangdictionaryConfig',
     'translator.apps.TranslatorConfig',
 
+    'import_export',
+
+
 ]
 
 MIDDLEWARE = [
